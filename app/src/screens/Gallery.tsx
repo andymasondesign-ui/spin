@@ -42,7 +42,7 @@ const SLIDES: [string, ReactNode][] = [
 
 const slug = (label: string) => 's' + label.slice(0, 2);
 
-/** Every screen side by side as 560×1000 slides. Print (⌘P → Save as PDF) gives one page per screen. */
+/** Every screen side by side as 560×1000 slides. Printing from a browser gives one page per screen. */
 export function Gallery() {
   return (
     <div className="gallery">
@@ -50,14 +50,14 @@ export function Gallery() {
         <div>
           <div className="gallery__title">All screens</div>
           <div className="gallery__hint">
-            {SLIDES.length} screens, each shown in a fixed state. Every screen still responds to taps. Print to PDF to export one page per screen. · <Link to="/">Open the app</Link>
+            {SLIDES.length} screens, each shown in a fixed state. Every screen still responds to taps. · <Link to="/">Open the app</Link>
           </div>
         </div>
       </div>
       <div className="gallery__grid">
         {SLIDES.map(([label, screen]) => (
           <section key={label} className="slide" id={slug(label)} data-label={label}>
-            <a className="slide__label" href={'#' + slug(label)}>{label}</a>
+            <span className="slide__label">{label}</span>
             <div className="slide__canvas">{screen}</div>
           </section>
         ))}

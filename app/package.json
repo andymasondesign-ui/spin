@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:artifact": "tsc -b && vite build --mode artifact",
     "preview": "vite preview",
     "typecheck": "tsc -b"
   },
@@ -19,6 +20,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^4.7.0",
     "typescript": "^5.9.3",
-    "vite": "^6.4.3"
+    "vite": "^6.4.3",
+    "vite-plugin-singlefile": "^2.3.3"
   }
 }

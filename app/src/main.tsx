@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { Page } from './components/ui';
 import { Home } from './screens/Home';
 import { Help } from './screens/Help';
@@ -18,7 +18,7 @@ function Keyed({ children }: { children: React.ReactElement }) {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Keyed><Home /></Keyed>} />
         <Route path="/help" element={<Keyed><Help /></Keyed>} />
@@ -28,6 +28,6 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/screens" element={<Gallery />} />
         <Route path="*" element={<Keyed><Home /></Keyed>} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>,
 );

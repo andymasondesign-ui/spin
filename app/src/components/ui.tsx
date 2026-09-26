@@ -1,7 +1,7 @@
-import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../assets/spin-logo-dark.svg';
-import { AVATAR_URL } from '../data/user';
+import { AVATAR_URL, USER_NAME } from '../data/user';
 
 export function Icon({ name, size, style, className = '' }: { name: string; size?: number; style?: CSSProperties; className?: string }) {
   return (
@@ -57,8 +57,12 @@ export function Logo() {
   return <img src={logo} alt="Spin Ebikes" className="logo" />;
 }
 
+/** Profile photo; falls back to the initial if the photo can't load (offline, or where external images are blocked). */
 export function AvatarImg() {
-  return <img src={AVATAR_URL} alt="Laura" />;
+  const [failed, setFailed] = useState(false);
+  if (failed)
+    return <span style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--ink)', color: 'var(--lime)', font: '600 15px var(--font-display)' }}>{USER_NAME[0]}</span>;
+  return <img src={AVATAR_URL} alt={USER_NAME} onError={() => setFailed(true)} />;
 }
 
 /** Logo on the left; notifications and account on the right. */
