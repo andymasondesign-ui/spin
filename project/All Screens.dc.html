@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>body{margin:0;background:#E9E7E0;font-family:Inter,system-ui,sans-serif;color:#1A1A1A}a{color:#1A1A1A;text-decoration:none}a:hover{color:#8A9A6B}</style></helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="560" height="1000" hint-size="100%,100%">
+<section data-label="01 Home" data-screen-label="01 Home" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Homepage" only="c" hint-size="500px,960px"></dc-import></section>
+<section data-label="02 Help" data-screen-label="02 Help" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Help" embedded="{{ true }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="03 Issue · Choose area" data-screen-label="03 Issue · Choose area" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Issue Flow" embedded="{{ true }}" preset="{{ p.i1 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="04 Issue · Area selected" data-screen-label="04 Issue · Area selected" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Issue Flow" embedded="{{ true }}" preset="{{ p.i2 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="05 Issue · Symptom" data-screen-label="05 Issue · Symptom" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Issue Flow" embedded="{{ true }}" preset="{{ p.i3 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="06 Issue · Detail" data-screen-label="06 Issue · Detail" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Issue Flow" embedded="{{ true }}" preset="{{ p.i4 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="07 Issue · Schedule call" data-screen-label="07 Issue · Schedule call" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Issue Flow" embedded="{{ true }}" preset="{{ p.i5 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="08 Issue · Confirm" data-screen-label="08 Issue · Confirm" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Issue Flow" embedded="{{ true }}" preset="{{ p.i6 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="09 Issue · Booked" data-screen-label="09 Issue · Booked" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Issue Flow" embedded="{{ true }}" preset="{{ p.i7 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="10 Onboarding · Welcome" data-screen-label="10 Onboarding · Welcome" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Onboarding" preset="{{ p.o1 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="11 Onboarding · Choose bike" data-screen-label="11 Onboarding · Choose bike" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Onboarding" preset="{{ p.o2 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="12 Onboarding · Accessories" data-screen-label="12 Onboarding · Accessories" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Onboarding" preset="{{ p.o3 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="13 Onboarding · Features" data-screen-label="13 Onboarding · Features" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Onboarding" preset="{{ p.o4 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="14 Onboarding · Confirm" data-screen-label="14 Onboarding · Confirm" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Onboarding" preset="{{ p.o5 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="15 Onboarding · Cart" data-screen-label="15 Onboarding · Cart" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Onboarding" preset="{{ p.o6 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="16 Onboarding · Done" data-screen-label="16 Onboarding · Done" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Onboarding" preset="{{ p.o7 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="17 Rides · Tracker, no rewards" data-screen-label="17 Rides · Tracker, no rewards" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Rides" embedded="{{ true }}" preset="{{ p.r1 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="18 Rides · Find incentives" data-screen-label="18 Rides · Find incentives" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Rides" embedded="{{ true }}" preset="{{ p.r2 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="19 Rides · Incentive added" data-screen-label="19 Rides · Incentive added" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Rides" embedded="{{ true }}" preset="{{ p.r3 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="20 Rides · My incentives" data-screen-label="20 Rides · My incentives" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Rides" embedded="{{ true }}" preset="{{ p.r4 }}" hint-size="500px,960px"></dc-import></section>
+<section data-label="21 Rides · Single incentive" data-screen-label="21 Rides · Single incentive" style="display:flex;align-items:center;justify-content:center;background:#E9E7E0;color:#1A1A1A"><dc-import name="Rides" embedded="{{ true }}" preset="{{ p.r5 }}" hint-size="500px,960px"></dc-import></section>
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  p = (() => {
+    const sel = ['brakes'], sym = { brakes: 'not-working' }, det = { brakes: 'unsure' };
+    const when = { day: 2, half: 'AM', time: '10:30' };
+    const ob = { bike: 'haul', acc: ['lock', 'helmet'], feat: ['thirdparty'] };
+    return {
+      i1: { step: 'area' },
+      i2: { step: 'area', sel },
+      i3: { step: 'symptom', hist: ['area'], sel },
+      i4: { step: 'detail', hist: ['area', 'symptom'], sel, sym },
+      i5: { step: 'schedule', hist: ['area', 'symptom', 'detail'], sel, sym, det, ...when },
+      i6: { step: 'confirm', hist: ['area', 'symptom', 'detail', 'schedule'], sel, sym, det, ...when },
+      i7: { step: 'booked', hist: ['area', 'symptom', 'detail', 'schedule', 'confirm'], sel, sym, det, ...when },
+      o1: { step: 'welcome' },
+      o2: { step: 'bike', hist: ['welcome'] },
+      o3: { step: 'acc', hist: ['welcome', 'bike'], ...ob },
+      o4: { step: 'feat', hist: ['welcome', 'bike', 'acc'], ...ob },
+      o5: { step: 'confirm', hist: ['welcome', 'bike', 'acc', 'feat'], ...ob },
+      o6: { step: 'cart', hist: ['welcome', 'bike', 'acc', 'feat', 'confirm'], ...ob },
+      o7: { step: 'done', hist: ['welcome', 'bike', 'acc', 'feat', 'confirm', 'cart'], ...ob },
+      r1: { view: 'tracker', mine: [] },
+      r2: { view: 'choose', mine: [], pick: 'coffee' },
+      r3: { view: 'added', mine: ['coffee'], last: 'coffee' },
+      r4: { view: 'tracker', mine: ['coffee', 'sticker'] },
+      r5: { view: 'single', mine: ['coffee', 'sticker'], open: 'coffee' }
+    };
+  })();
+  renderVals() { return { p: this.p }; }
+}
+</script>
+</body>
+</html>

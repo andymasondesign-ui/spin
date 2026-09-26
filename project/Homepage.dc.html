@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics=""><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Rounded:opsz,wght,FILL@24,400,0..1&amp;display=swap" rel="stylesheet"><style>body{margin:0;background:#E9E7E0;font-family:Inter,system-ui,sans-serif;color:#1A1A1A}a{color:#1A1A1A}a:hover{color:#8A9A6B}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:390px}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:28px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}</style><script src="./image-slot.js"></script></helmet>
+<section class="dv-turn" id="t1">
+<sc-if value="{{ showAll }}" hint-placeholder-val="{{ true }}"><div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Spin Ebikes · Homepage (signed in)</span></div>
+<p style="margin:0 0 28px;max-width:760px;font:13px/1.55 Inter,sans-serif;color:#55554F;text-wrap:pretty">Homepage is the start of User Flow 2, so each option keeps the Help tab one tap away. Following the usability findings, "Track" is renamed "Rides" and the rides card states what the numbers mean. <a class="dv-oid" href="#1a">1a</a> follows the sketch closely. <a class="dv-oid" href="#1b">1b</a> and <a class="dv-oid" href="#1c">1c</a> add a direct "something's wrong" entry on the homepage, in response to the maintenance problem statement (users don't trust support to be fast). Tabs and the Week/Month toggle respond to taps.</p></sc-if>
+<div class="dv-opts">
+
+<sc-if value="{{ showAll }}" hint-placeholder-val="{{ true }}"><div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>By the sketch: My bike + Rides, light</div>
+<div style="width:390px;height:844px;border-radius:48px;overflow:hidden;position:relative;background:#F5F3ED;box-shadow:0 0 0 10px #1A1A1A,0 30px 60px rgba(0,0,0,.25);margin:10px">
+<div style="height:100%;overflow-y:auto;padding-bottom:110px;box-sizing:border-box">
+<div style="height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:600 15px Inter,sans-serif"><span>9:41</span><span style="white-space:nowrap;font-family:'Material Symbols Rounded';font-size:18px">signal_cellular_alt wifi battery_full</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 20px 0">
+<img src="assets/spin-logo-dark.svg" alt="Spin Ebikes" style="height:30px;display:block">
+<div style="display:flex;gap:8px">
+<button aria-label="Notifications" style="width:44px;height:44px;border-radius:22px;border:none;background:#fff;position:relative;cursor:pointer;font-family:'Material Symbols Rounded';font-size:22px;color:#1A1A1A">notifications<span style="position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:4px;background:#1A1A1A;border:2px solid #D4FF3D"></span></button>
+<button aria-label="Account" style="width:44px;height:44px;border-radius:22px;border:none;background:#1A1A1A;color:#D4FF3D;cursor:pointer;font:600 15px 'Bricolage Grotesque',sans-serif">L</button>
+</div></div>
+<h1 style="margin:22px 20px 16px;font:600 30px/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em">Hi Laura</h1>
+<div style="margin:0 16px;background:#fff;border-radius:28px;padding:10px 10px 16px">
+<div style="height:170px;border-radius:20px;background:repeating-linear-gradient(135deg,#ECE9E0 0 8px,#F3F1EA 8px 16px);display:flex;align-items:flex-end;justify-content:space-between;padding:12px;box-sizing:border-box">
+<span style="font:11px ui-monospace,Menlo,monospace;color:#8C8C88">your bike photo</span>
+<span style="display:flex;align-items:center;gap:6px;background:#1A1A1A;color:#F5F3ED;padding:6px 10px;border-radius:14px;font:500 12px Inter,sans-serif"><span style="width:7px;height:7px;border-radius:4px;background:#D4FF3D"></span>Ready to ride</span></div>
+<div style="padding:14px 8px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+<div><div style="font:500 12px Inter,sans-serif;color:#8C8C88">My bike</div><div style="font:600 21px/1.2 'Bricolage Grotesque',sans-serif;margin-top:2px">Spin City S2</div><div style="font:13px Inter,sans-serif;color:#55554F;margin-top:4px">Month 2 of 6</div></div>
+<button style="height:36px;padding:0 14px;border-radius:18px;border:1px solid #1A1A1A22;background:#F5F3ED;font:500 13px Inter,sans-serif;cursor:pointer;white-space:nowrap">Manage plan</button></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:14px 4px 0">
+<div style="background:#F5F3ED;border-radius:14px;padding:10px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">78%</div><div style="font:11px Inter,sans-serif;color:#8C8C88">Battery</div></div>
+<div style="background:#F5F3ED;border-radius:14px;padding:10px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">42 km</div><div style="font:11px Inter,sans-serif;color:#8C8C88">Range left</div></div>
+<div style="background:#F5F3ED;border-radius:14px;padding:10px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">3 Nov</div><div style="font:11px Inter,sans-serif;color:#8C8C88">Next service</div></div>
+</div></div>
+<div style="margin:12px 16px 0;background:#fff;border-radius:28px;padding:18px">
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="font:600 19px 'Bricolage Grotesque',sans-serif">Your rides</div>
+<div style="display:flex;background:#F5F3ED;border-radius:16px;padding:3px">
+<button onClick="{{ a.week }}" style="border:none;border-radius:13px;padding:6px 12px;font:500 12px Inter,sans-serif;cursor:pointer;background:{{ a.wBg }};color:{{ a.wFg }}">Week</button>
+<button onClick="{{ a.month }}" style="border:none;border-radius:13px;padding:6px 12px;font:500 12px Inter,sans-serif;cursor:pointer;background:{{ a.mBg }};color:{{ a.mFg }}">Month</button></div></div>
+<div style="display:flex;gap:18px;margin-top:14px"><div><div style="font:600 26px 'Bricolage Grotesque',sans-serif">{{ a.km }}</div><div style="font:12px Inter,sans-serif;color:#8C8C88">ridden</div></div><div><div style="font:600 26px 'Bricolage Grotesque',sans-serif">{{ a.trips }}</div><div style="font:12px Inter,sans-serif;color:#8C8C88">trips</div></div></div>
+<div style="display:flex;align-items:flex-end;gap:8px;height:110px;margin-top:16px">
+<sc-for list="{{ a.bars }}" as="b" hint-placeholder-count="7"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;height:100%"><div style="width:100%;border-radius:8px;height:{{ b.h }};background:{{ b.bgA }}"></div><span style="font:11px Inter,sans-serif;color:#8C8C88">{{ b.l }}</span></div></sc-for></div>
+</div></div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:10px 16px 28px;background:#F5F3ED">
+<div style="display:flex;background:#fff;border-radius:30px;padding:6px;gap:4px">
+<sc-for list="{{ a.nav }}" as="n" hint-placeholder-count="3"><button onClick="{{ n.go }}" style="flex:1;height:52px;box-sizing:border-box;border:{{ n.bd }};border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;background:{{ n.bg }};color:{{ n.fg }};font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">{{ n.icon }}</span>{{ n.label }}</button></sc-for>
+</div></div>
+</div></div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Dark, lime bike card, "something's wrong" card on home</div>
+<div style="width:390px;height:844px;border-radius:48px;overflow:hidden;position:relative;background:#1A1A1A;color:#F5F3ED;box-shadow:0 0 0 10px #0E0E0E,0 30px 60px rgba(0,0,0,.3);margin:10px">
+<div style="height:100%;overflow-y:auto;padding-bottom:110px;box-sizing:border-box">
+<div style="height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:600 15px Inter,sans-serif"><span>9:41</span><span style="white-space:nowrap;font-family:'Material Symbols Rounded';font-size:18px">signal_cellular_alt wifi battery_full</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 20px 0">
+<img src="assets/spin-logo-light.svg" alt="Spin Ebikes" style="height:30px;display:block">
+<div style="display:flex;gap:8px">
+<button aria-label="Notifications" style="width:44px;height:44px;border-radius:22px;border:none;background:#2A2A27;color:#F5F3ED;position:relative;cursor:pointer;font-family:'Material Symbols Rounded';font-size:22px">notifications<span style="position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:4px;background:#D4FF3D"></span></button>
+<button aria-label="Account" style="width:44px;height:44px;border-radius:22px;border:none;background:#F5F3ED;color:#1A1A1A;cursor:pointer;font:600 15px 'Bricolage Grotesque',sans-serif">L</button>
+</div></div>
+<div style="margin:22px 20px 16px"><div style="font:14px Inter,sans-serif;color:#8C8C88" data-comment-anchor="1caf89e3be-div">Tuesday 22 September</div><h1 style="margin:4px 0 0;font:600 30px/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em">Morning, Laura</h1></div>
+<div style="margin:0 16px;background:#D4FF3D;color:#1A1A1A;border-radius:30px;padding:18px 18px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:500 12px Inter,sans-serif;opacity:.7">My bike</div><div style="font:700 24px/1.1 'Bricolage Grotesque',sans-serif;margin-top:2px">Spin City S2</div></div><span style="display:flex;align-items:center;gap:6px;background:#1A1A1A;color:#D4FF3D;padding:6px 10px;border-radius:14px;font:500 12px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:15px">check_circle</span>All good</span></div>
+<div style="height:150px;margin:12px 0;border-radius:20px;background:repeating-linear-gradient(135deg,#C6F02E 0 8px,#CDF736 8px 16px);display:flex;align-items:flex-end;padding:12px;box-sizing:border-box"><span style="font:11px ui-monospace,Menlo,monospace;color:#1A1A1A99">bike cut-out, side view</span></div>
+<div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:8px;border-radius:4px;background:#1A1A1A22;overflow:hidden"><div style="width:78%;height:100%;background:#1A1A1A;border-radius:4px"></div></div><span style="font:600 13px Inter,sans-serif">78% · 42 km</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid #1A1A1A22"><span style="font:13px Inter,sans-serif">Plan · pause anytime</span><span style="font:600 13px Inter,sans-serif;display:flex;align-items:center">Plan<span style="font-family:'Material Symbols Rounded';font-size:18px">chevron_right</span></span></div>
+</div>
+<button onClick="{{ b.toHelp }}" style="margin:12px 16px 0;width:calc(100% - 32px);text-align:left;border:1px solid #3A3A36;background:#232320;color:#F5F3ED;border-radius:26px;padding:16px;display:flex;gap:14px;align-items:center;cursor:pointer">
+<span style="flex:none;width:48px;height:48px;border-radius:16px;background:#F0E6C8;color:#1A1A1A;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px">build</span>
+<span style="flex:1"><span style="display:block;font:600 16px 'Bricolage Grotesque',sans-serif">Something not right?</span><span style="display:block;font:13px/1.4 Inter,sans-serif;color:#B5B5AE;margin-top:3px;text-wrap:pretty">Point to it on your bike and we'll help you work it out. Repairs are included in your plan.</span></span>
+<span style="font-family:'Material Symbols Rounded';font-size:22px;color:#D4FF3D">arrow_forward</span></button>
+<div style="margin:12px 16px 0;background:#232320;border-radius:28px;padding:18px">
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="font:600 19px 'Bricolage Grotesque',sans-serif">Your rides</div>
+<div style="display:flex;background:#1A1A1A;border-radius:16px;padding:3px">
+<button onClick="{{ b.week }}" style="border:none;border-radius:13px;padding:6px 12px;font:500 12px Inter,sans-serif;cursor:pointer;background:{{ b.wBg }};color:{{ b.wFg }}">Week</button>
+<button onClick="{{ b.month }}" style="border:none;border-radius:13px;padding:6px 12px;font:500 12px Inter,sans-serif;cursor:pointer;background:{{ b.mBg }};color:{{ b.mFg }}">Month</button></div></div>
+<div style="display:flex;align-items:flex-end;gap:8px;height:100px;margin-top:18px">
+<sc-for list="{{ b.bars }}" as="r" hint-placeholder-count="7"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;height:100%"><div style="width:100%;border-radius:8px;height:{{ r.h }};background:{{ r.bgB }}"></div><span style="font:11px Inter,sans-serif;color:#8C8C88">{{ r.l }}</span></div></sc-for></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:16px">
+<div style="background:#1A1A1A;border-radius:14px;padding:10px"><div style="font:600 18px 'Bricolage Grotesque',sans-serif">{{ b.km }}</div><div style="font:11px Inter,sans-serif;color:#8C8C88">ridden</div></div>
+<div style="background:#1A1A1A;border-radius:14px;padding:10px"><div style="font:600 18px 'Bricolage Grotesque',sans-serif">{{ b.trips }}</div><div style="font:11px Inter,sans-serif;color:#8C8C88">trips</div></div>
+<div style="background:#1A1A1A;border-radius:14px;padding:10px"><div style="font:600 18px 'Bricolage Grotesque',sans-serif;color:#D4FF3D">{{ b.saved }}</div><div style="font:11px Inter,sans-serif;color:#8C8C88">saved vs car</div></div>
+</div></div></div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:10px 16px 28px;background:#1A1A1A">
+<div style="display:flex;background:#2A2A27;border-radius:30px;padding:6px;gap:4px">
+<sc-for list="{{ b.nav }}" as="n" hint-placeholder-count="3"><button onClick="{{ n.go }}" style="flex:1;height:52px;border:none;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;background:{{ n.bg }};color:{{ n.fg }};font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">{{ n.icon }}</span>{{ n.label }}</button></sc-for>
+</div></div>
+</div></div>
+
+</sc-if>
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Lime header, big type, quick actions row</div>
+<div style="width:390px;height:844px;border-radius:48px;overflow:hidden;position:relative;background:#F5F3ED;box-shadow:0 0 0 10px #1A1A1A,0 30px 60px rgba(0,0,0,.25);margin:10px">
+<div style="height:100%;overflow-y:auto;padding-bottom:110px;box-sizing:border-box">
+<div style="background:#D4FF3D;padding-bottom:96px;border-radius:0 0 36px 36px">
+<div style="height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:600 15px Inter,sans-serif"><span>9:41</span><span style="white-space:nowrap;font-family:'Material Symbols Rounded';font-size:18px">signal_cellular_alt wifi battery_full</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 20px 0">
+<img src="assets/spin-logo-dark.svg" alt="Spin Ebikes" style="height:30px;display:block">
+<div style="display:flex;gap:8px">
+<button aria-label="Notifications" style="width:44px;height:44px;border-radius:22px;border:none;background:#1A1A1A;color:#F5F3ED;position:relative;cursor:pointer;font-family:'Material Symbols Rounded';font-size:22px">notifications<span style="position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:4px;background:#D4FF3D"></span></button>
+<button aria-label="Account" style="width:44px;height:44px;border-radius:22px;border:2px solid #1A1A1A;padding:0;overflow:hidden;cursor:pointer;background:#F5F3ED;display:block" data-comment-anchor="7990bae2af-button"><img src="https://images.unsplash.com/photo-1593158500181-996ca96a02fd?q=80&w=200&auto=format&fit=crop&crop=faces" alt="Laura" style="width:100%;height:100%;object-fit:cover;display:block"></img></button>
+</div></div>
+<div style="margin:26px 20px 0;font:500 14px Inter,sans-serif;color:#1A1A1A;opacity:.7">Tuesday 22 September</div>
+<h1 style="margin: 6px 20px 0; font: 700 44px/1 'Bricolage Grotesque',sans-serif; letter-spacing: -.03em; font-size: 36px">Morning, Laura.</h1>
+<p style="margin:12px 20px 0;font:15px/1.45 Inter,sans-serif;max-width:300px;text-wrap:pretty">Your bike is 78% charged, with enough range for about 4 commutes.</p>
+</div>
+<div style="margin:-76px 16px 0;background:#fff;border-radius:28px;padding:10px;box-shadow:0 10px 30px rgba(26,26,26,.08)">
+<div style="aspect-ratio:676/464;width:100%;border-radius:20px;overflow:hidden;background:#F3F1EA"><image-slot id="bike-haul-st" shape="rounded" radius="20" fit="cover" placeholder="Drop Haul ST product photo"></image-slot></div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 8px 6px"><div><div style="font:500 12px Inter,sans-serif;color:#8C8C88">My bike</div><div style="font:600 19px 'Bricolage Grotesque',sans-serif;margin-top:2px">Specialized Haul ST</div></div></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:4px 0 0">
+<div style="background:#F5F3ED;border-radius:14px;padding:10px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">78%</div><div style="font:11px Inter,sans-serif;color:#8C8C88">Battery</div></div>
+<div style="background:#F5F3ED;border-radius:14px;padding:10px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">42 km</div><div style="font:11px Inter,sans-serif;color:#8C8C88">Range left</div></div>
+<div style="background:#F5F3ED;border-radius:14px;padding:10px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">3 Nov</div><div style="font:11px Inter,sans-serif;color:#8C8C88">Next service</div></div>
+</div>
+</div>
+<button onClick="{{ c.toHelp }}" style="margin:12px 16px 0;width:calc(100% - 32px);text-align:left;border:none;background:#fff;color:#1A1A1A;border-radius:26px;padding:16px;display:flex;gap:14px;align-items:center;cursor:pointer">
+<span style="flex:none;width:48px;height:48px;border-radius:16px;background:#D4FF3D;color:#1A1A1A;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px">build</span>
+<span style="flex:1"><span style="display:block;font:600 16px 'Bricolage Grotesque',sans-serif">Something not right?</span><span style="display:block;font:13px/1.4 Inter,sans-serif;color:#55554F;margin-top:3px;text-wrap:pretty">Point to it on your bike and we'll help you work it out. Repairs are included in your plan.</span></span>
+<span style="font-family:'Material Symbols Rounded';font-size:22px;color:#1A1A1A">arrow_forward</span></button>
+<div style="margin:12px 16px 0;background:#fff;border-radius:28px;padding:18px">
+<div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font:600 19px 'Bricolage Grotesque',sans-serif">Ride tracker</div><div style="font:12px Inter,sans-serif;color:#8C8C88;margin-top:2px">{{ c.range }}</div></div>
+<div style="display:flex;background:#F5F3ED;border-radius:16px;padding:3px">
+<button onClick="{{ c.week }}" style="border:none;border-radius:13px;padding:6px 12px;font:500 12px Inter,sans-serif;cursor:pointer;background:{{ c.wBg }};color:{{ c.wFg }}">Week</button>
+<button onClick="{{ c.month }}" style="border:none;border-radius:13px;padding:6px 12px;font:500 12px Inter,sans-serif;cursor:pointer;background:{{ c.mBg }};color:{{ c.mFg }}">Month</button></div></div>
+<div style="display:flex;gap:18px;margin-top:14px"><div><div style="font:600 26px 'Bricolage Grotesque',sans-serif">{{ c.km }}</div><div style="font:12px Inter,sans-serif;color:#8C8C88">ridden</div></div><div><div style="font:600 26px 'Bricolage Grotesque',sans-serif">{{ c.trips }}</div><div style="font:12px Inter,sans-serif;color:#8C8C88">trips</div></div></div>
+<div style="display:flex;align-items:flex-end;gap:8px;height:124px;margin-top:16px">
+<sc-for list="{{ c.bars }}" as="b" hint-placeholder-count="7"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;height:100%"><div style="width:100%;box-sizing:border-box;border-radius:8px;height:{{ b.h }};background:{{ b.bgT }};border:{{ b.bd }}"></div><span style="display:flex;flex-direction:column;align-items:center;font:{{ b.lw }} 11px/1.3 Inter,sans-serif;color:{{ b.lc }}"><span>{{ b.l }}</span><span>{{ b.n }}</span></span></div></sc-for></div>
+</div></div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:10px 16px 28px;background:linear-gradient(transparent,#F5F3ED 30%)">
+<div style="display:flex;background:#1A1A1A;border-radius:30px;padding:6px;gap:4px">
+<sc-for list="{{ c.nav }}" as="n" hint-placeholder-count="3"><button onClick="{{ n.go }}" style="flex:1;height:52px;border:none;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;background:{{ n.bg }};color:{{ n.fg }};font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">{{ n.icon }}</span>{{ n.label }}</button></sc-for>
+</div></div>
+</div></div>
+
+</div>
+<sc-if value="{{ showAll }}" hint-placeholder-val="{{ true }}"><p class="dv-next">Try next: "go with <a class="dv-oid" href="#1b">1b</a> but in the light theme of <a class="dv-oid" href="#1a">1a</a>" · "put the quick actions from <a class="dv-oid" href="#1c">1c</a> into <a class="dv-oid" href="#1a">1a</a>" · "now build the Help screen"</p></sc-if>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: { a: 'home', b: 'home', c: 'home' }, range: { a: 'week', b: 'week', c: 'week' } };
+  data = {
+    week: { v: [6, 12, 0, 9, 14, 4, 0], l: ['M', 'T', 'W', 'T', 'F', 'S', 'S'], hi: 1, km: '45 km', trips: '5', saved: '£14' },
+    weekC: { v: [6, 12, 0, 9, 14, null, null], l: ['M', 'T', 'W', 'T', 'F', 'S', 'S'], n: [21, 22, 23, 24, 25, 26, 27], hi: 4, km: '41 km', trips: '5', range: 'Mon 21 – Sun 27 Sep' },
+    month: { v: [22, 52, 50, 41, null], l: ['1–6', '7–13', '14–20', '21–27', '28–30'], n: ['Sep', 'Sep', 'Sep', 'Sep', 'Sep'], hi: 3, km: '165 km', trips: '21', saved: '£52', range: 'September 2026' }
+  };
+  themes = {
+    a: { on: ['#D4FF3D', '#1A1A1A'], off: ['transparent', '#8C8C88'], tOn: ['#1A1A1A', '#F5F3ED'], tOff: ['transparent', '#55554F'] },
+    b: { on: ['#D4FF3D', '#1A1A1A'], off: ['transparent', '#B5B5AE'], tOn: ['#F5F3ED', '#1A1A1A'], tOff: ['transparent', '#B5B5AE'] },
+    c: { on: ['#D4FF3D', '#1A1A1A'], off: ['transparent', '#B5B5AE'], tOn: ['#1A1A1A', '#F5F3ED'], tOff: ['transparent', '#55554F'] }
+  };
+  build(k) {
+    const t = this.themes[k], r = this.state.range[k], d = this.data[(k === 'c' && r === 'week') ? 'weekC' : r], max = Math.max(...d.v);
+    const setTab = id => () => this.setState(s => ({ tab: { ...s.tab, [k]: id } }));
+    const setR = v => () => this.setState(s => ({ range: { ...s.range, [k]: v } }));
+    const nav = [['home', 'home', 'Home'], ['help', 'support', 'Help'], ['rides', 'bar_chart', 'Rides']].map(([id, icon, label]) => {
+      const on = this.state.tab[k] === id;
+      return { icon, label, go: (k === 'c' && id !== 'home') ? () => { window.location.href = id === 'help' ? 'Help.dc.html' : 'Rides.dc.html'; } : setTab(id), bg: on ? t.on[0] : t.off[0], fg: on ? t.on[1] : t.off[1], bd: on ? '1.5px solid #1A1A1A' : '1.5px solid transparent' };
+    });
+    const bars = d.v.map((v, i) => ({
+      l: d.l[i], n: d.n ? d.n[i] : '', h: v == null ? '100%' : Math.max(6, Math.round(v / max * 76)) + '%',
+      bgT: v == null ? 'transparent' : (i === d.hi ? '#1A1A1A' : (v ? '#E4E1D6' : '#EFEDE6')), bd: v == null ? '1.5px dashed #DEDBD2' : 'none', lc: i === d.hi ? '#1A1A1A' : '#8C8C88', lw: i === d.hi ? '600' : '400',
+      bgA: i === d.hi ? '#1A1A1A' : (v ? '#E4E1D6' : '#EFEDE6'),
+      bgB: i === d.hi ? '#D4FF3D' : (v ? '#4A4A45' : '#2F2F2C'),
+      bgC: i === d.hi ? '#D4FF3D' : (v ? '#1A1A1A' : '#EFEDE6')
+    }));
+    const w = r === 'week';
+    return { nav, bars, range: d.range, km: d.km, trips: d.trips, saved: d.saved, week: setR('week'), month: setR('month'), toHelp: k === 'c' ? () => { window.location.href = 'Help.dc.html'; } : setTab('help'),
+      wBg: w ? t.tOn[0] : t.tOff[0], wFg: w ? t.tOn[1] : t.tOff[1], mBg: w ? t.tOff[0] : t.tOn[0], mFg: w ? t.tOff[1] : t.tOn[1] };
+  }
+  renderVals() { return { showAll: this.props.only !== 'c', a: this.build('a'), b: this.build('b'), c: this.build('c') }; }
+}
+</script>
+</body>
+</html>

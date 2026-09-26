@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Rounded:opsz,wght,FILL@24,400,0..1&amp;display=swap" rel="stylesheet"><script src="./image-slot.js"></script><style>body{margin:0;background:#E9E7E0;font-family:Inter,system-ui,sans-serif;color:#1A1A1A}a{color:#1A1A1A;text-decoration:none}a:hover{color:#8A9A6B}@keyframes pulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.1);opacity:0}}</style></helmet>
+<div style="min-height:{{ rootMinH }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px 20px;box-sizing:border-box">
+<div style="font:400 11px system-ui,sans-serif;color:rgba(0,0,0,.55)">I've got an issue · {{ stepName }}</div>
+<div data-screen-label="Issue flow" style="width:390px;height:844px;border-radius:48px;overflow:hidden;position:relative;background:#F5F3ED;box-shadow:0 0 0 10px #1A1A1A,0 30px 60px rgba(0,0,0,.25);flex:none">
+<div style="height:100%;overflow-y:auto;padding-bottom:130px;box-sizing:border-box">
+<div style="height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:600 15px Inter,sans-serif"><span>9:41</span><span style="white-space:nowrap;font-family:'Material Symbols Rounded';font-size:18px">signal_cellular_alt wifi battery_full</span></div>
+<div style="display:flex;flex-direction:column;align-items:stretch;gap:22px;padding:6px 20px 0">
+<button onClick="{{ back }}" style="height:40px;padding:0 16px 0 10px;border:1.5px solid #1A1A1A;border-radius:999px;background:#fff;display:flex;align-items:center;gap:2px;font:500 14px Inter,sans-serif;color:#1A1A1A;cursor:pointer;flex:none;align-self:flex-start"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_left</span>{{ backLabel }}</button>
+<sc-if value="{{ showProgress }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;display:flex;gap:4px">
+<sc-for list="{{ progress }}" as="p" hint-placeholder-count="5"><div style="flex:1;height:5px;border-radius:3px;background:{{ p.bg }}"></div></sc-for>
+</div>
+</sc-if>
+</div>
+
+<sc-if value="{{ isArea }}" hint-placeholder-val="{{ true }}">
+<div style="padding:17px 20px 0">
+<h1 style="margin:0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Where's the problem?</h1>
+<p style="margin:8px 0 0;font:15px/1.45 Inter,sans-serif;color:#55554F;text-wrap:pretty">Tap every part of your bike that isn't working properly.</p>
+</div>
+<div style="margin:18px 16px 0;background:#fff;border-radius:28px;padding:10px">
+<div style="position:relative;aspect-ratio:676/464;width:100%;border-radius:20px;overflow:hidden;background:#F3F1EA">
+<image-slot id="bike-haul-st" shape="rounded" radius="20" fit="cover" placeholder="Drop Haul ST product photo"></image-slot>
+<div style="position:absolute;inset:0;pointer-events:none">
+<sc-for list="{{ markers }}" as="h" hint-placeholder-count="6">
+<button onClick="{{ h.pick }}" aria-label="{{ h.label }}" style="position:absolute;left:{{ h.x }};top:{{ h.y }};width:44px;height:44px;margin:-22px 0 0 -22px;border:none;background:transparent;padding:0;cursor:pointer;pointer-events:auto;display:flex;align-items:center;justify-content:center">
+<sc-if value="{{ h.on }}" hint-placeholder-val="{{ false }}">{{ pulse }}</sc-if>
+<span style="position:relative;width:26px;height:26px;border-radius:13px;box-sizing:border-box;border:2px solid #1A1A1A;background:{{ h.bg }};box-shadow:0 2px 6px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:18px;line-height:1;font-weight:600;color:#1A1A1A">{{ h.mark }}</span>
+</button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;padding:12px 4px 4px">
+<sc-for list="{{ areas }}" as="h" hint-placeholder-count="6"><button onClick="{{ h.pick }}" style="height:34px;padding:0 12px;border-radius:999px;box-sizing:border-box;border:1.5px solid {{ h.chipBd }};background:{{ h.chipBg }};font:500 13px Inter,sans-serif;color:#1A1A1A;cursor:pointer">{{ h.label }}</button></sc-for>
+</div>
+</div>
+<sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+<div style="margin:10px 16px 0;background:#fff;border-radius:24px;padding:6px 16px">
+<div style="font:500 12px Inter,sans-serif;color:#8C8C88;padding:10px 0 2px">{{ selCount }}</div>
+<sc-for list="{{ selRows }}" as="r" hint-placeholder-count="1">
+<div style="display:flex;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid {{ r.line }}">
+<span style="flex:none;width:44px;height:44px;border-radius:14px;background:#D4FF3D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:22px">{{ r.icon }}</span>
+<div style="flex:1"><div style="font:600 16px 'Bricolage Grotesque',sans-serif">{{ r.label }}</div><div style="font:13px/1.4 Inter,sans-serif;color:#55554F;margin-top:1px">{{ r.desc }}</div></div>
+<button onClick="{{ r.remove }}" aria-label="Remove" style="flex:none;width:36px;height:36px;border:none;border-radius:18px;background:#F5F3ED;cursor:pointer;font-family:'Material Symbols Rounded';font-size:18px;color:#1A1A1A">close</button>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<div style="margin:18px 16px 0;background:#F0E6C8;border-radius:24px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+<div style="flex:1"><div style="font:600 15px Inter,sans-serif">Not sure where it is?</div><div style="font:13px/1.4 Inter,sans-serif;color:#55554F;margin-top:2px">Show a technician on a free video call.</div></div>
+<button onClick="{{ skipToCall }}" style="flex:none;height:40px;padding:0 14px;border:1.5px solid #1A1A1A;border-radius:999px;background:#D4FF3D;font:600 13px Inter,sans-serif;color:#1A1A1A;cursor:pointer;display:flex;align-items:center;gap:6px"><span style="font-family:'Material Symbols Rounded';font-size:18px">videocam</span>Book a call</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+<div style="padding:17px 20px 0">
+<div style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:#fff;font:500 12px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:16px">{{ crumbIcon }}</span>{{ crumb }}</div>
+<h1 style="margin:12px 0 0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">{{ listTitle }}</h1>
+<p style="margin:8px 0 0;font:15px/1.45 Inter,sans-serif;color:#55554F;text-wrap:pretty">{{ listSub }}</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px;margin:18px 16px 0">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="1">
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-if value="{{ showGroupHead }}" hint-placeholder-val="{{ false }}"><div style="display:flex;align-items:center;gap:8px;padding:0 4px;font:600 17px 'Bricolage Grotesque',sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:20px">{{ g.icon }}</span>{{ g.label }}</div></sc-if>
+<sc-for list="{{ g.options }}" as="o" hint-placeholder-count="3">
+<button onClick="{{ o.pick }}" style="width:100%;min-height:76px;box-sizing:border-box;text-align:left;border:2px solid {{ o.bd }};background:{{ o.bg }};border-radius:24px;padding:12px 14px;display:flex;align-items:center;gap:14px;cursor:pointer;color:#1A1A1A">
+<span style="flex:none;width:48px;height:48px;border-radius:16px;background:{{ o.tile }};display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px">{{ o.icon }}</span>
+<span style="flex:1"><span style="display:block;font:600 16px Inter,sans-serif">{{ o.label }}</span><span style="display:block;font:13px/1.4 Inter,sans-serif;color:#55554F;margin-top:2px">{{ o.hint }}</span></span>
+<span style="flex:none;width:24px;height:24px;border-radius:12px;box-sizing:border-box;border:2px solid #1A1A1A;background:{{ o.dot }};display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:16px;color:#D4FF3D">{{ o.check }}</span>
+</button>
+<sc-if value="{{ o.showText }}" hint-placeholder-val="{{ false }}"><textarea value="{{ o.text }}" onChange="{{ o.onText }}" placeholder="Tell us what's happening, e.g. a rattle from the back when I go over bumps" rows="6" style="width:100%;box-sizing:border-box;margin-top:-2px;border:2px solid #1A1A1A;border-radius:20px;padding:12px 14px;font:15px/1.45 Inter,sans-serif;color:#1A1A1A;background:#fff;resize:none;outline:none"></textarea></sc-if>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{ notSure }}" hint-placeholder-val="{{ false }}">
+<div style="margin:12px 16px 0;padding:14px 16px;border-radius:20px;background:#1A1A1A;color:#F5F3ED;font:13px/1.45 Inter,sans-serif;display:flex;gap:10px"><span style="font-family:'Material Symbols Rounded';font-size:20px;color:#D4FF3D">videocam</span><span>That's fine. A technician will work it out with you on a short video call, free with your plan.</span></div>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{ isSchedule }}" hint-placeholder-val="{{ false }}">
+<div style="padding:17px 20px 0">
+<h1 style="margin:0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Let's schedule a technician</h1>
+<p style="margin:8px 0 0;font:15px/1.45 Inter,sans-serif;color:#55554F;text-wrap:pretty">A 15-minute video call in the app. Keep your bike nearby so you can show them.</p>
+</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin:20px 20px 10px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">Choose a day</div><div style="font:500 13px Inter,sans-serif;color:#55554F">September 2026</div></div>
+<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin:0 16px">
+<sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+<button onClick="{{ d.pick }}" style="height:66px;border-radius:999px;box-sizing:border-box;border:1.5px solid {{ d.bd }};background:{{ d.bg }};color:#1A1A1A;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0"><span style="font:500 11px Inter,sans-serif;color:{{ d.sub }}">{{ d.dow }}</span><span style="font:600 17px 'Bricolage Grotesque',sans-serif">{{ d.num }}</span></button>
+</sc-for>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;margin:24px 20px 10px">
+<div style="font:600 17px 'Bricolage Grotesque',sans-serif">Choose a time</div>
+<div style="display:flex;background:#fff;border-radius:999px;padding:3px;gap:2px">
+<sc-for list="{{ halves }}" as="m" hint-placeholder-count="2"><button onClick="{{ m.pick }}" style="height:32px;padding:0 14px;border:none;border-radius:999px;background:{{ m.bg }};color:{{ m.fg }};font:600 13px Inter,sans-serif;cursor:pointer">{{ m.label }}</button></sc-for>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 16px">
+<sc-for list="{{ slots }}" as="s" hint-placeholder-count="8">
+<button onClick="{{ s.pick }}" disabled="{{ s.taken }}" style="height:46px;border-radius:999px;box-sizing:border-box;border:1.5px solid {{ s.bd }};background:{{ s.bg }};color:{{ s.fg }};text-decoration:{{ s.strike }};font:500 14px Inter,sans-serif;cursor:pointer">{{ s.label }}</button>
+</sc-for>
+</div>
+<div style="margin:10px 20px 0;font:12px Inter,sans-serif;color:#8C8C88">Times shown in your local time. Crossed-out slots are taken.</div>
+</sc-if>
+
+<sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
+<div style="padding:17px 20px 0">
+<h1 style="margin:0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Confirm your call</h1>
+<p style="margin:8px 0 0;font:15px/1.45 Inter,sans-serif;color:#55554F">Check the details before we book it in.</p>
+</div>
+<div style="margin:18px 16px 0;background:#fff;border-radius:28px;padding:6px 18px">
+<sc-for list="{{ summary }}" as="r" hint-placeholder-count="4">
+<div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid {{ r.line }}">
+<span style="flex:none;width:40px;height:40px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:20px">{{ r.icon }}</span>
+<div style="flex:1;min-width:0"><div style="font:12px Inter,sans-serif;color:#8C8C88">{{ r.k }}</div><div style="font:600 15px/1.35 Inter,sans-serif;margin-top:2px">{{ r.v }}</div></div>
+<sc-if value="{{ r.edit }}" hint-placeholder-val="{{ false }}"><button onClick="{{ r.edit }}" style="flex:none;border:none;background:transparent;font:500 13px Inter,sans-serif;text-decoration:underline;color:#1A1A1A;cursor:pointer;padding:8px 0">Change</button></sc-if>
+</div>
+</sc-for>
+</div>
+<div style="margin:12px 16px 0;padding:14px 16px;border-radius:20px;background:#F0E6C8;font:13px/1.45 Inter,sans-serif;display:flex;gap:10px"><span style="font-family:'Material Symbols Rounded';font-size:20px">savings</span><span>Free with your plan. If the bike needs a repair, that's included too.</span></div>
+</sc-if>
+
+<sc-if value="{{ isBooked }}" hint-placeholder-val="{{ false }}">
+<div style="margin:18px 16px 0;background:#D4FF3D;border-radius:32px;padding:28px 20px 22px;display:flex;flex-direction:column;align-items:center;text-align:center">
+<span style="width:72px;height:72px;border-radius:36px;background:#1A1A1A;color:#D4FF3D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:40px">check</span>
+<h1 style="margin:18px 0 0;font:700 36px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Call booked</h1>
+<p style="margin:10px 0 0;font:15px/1.45 Inter,sans-serif;max-width:280px;text-wrap:pretty">We'll remind you 15 minutes before. The call opens right here in the app.</p>
+</div>
+<div style="margin:12px 16px 0;background:#fff;border-radius:28px;padding:6px 18px">
+<sc-for list="{{ bookedRows }}" as="r" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid {{ r.line }}">
+<span style="flex:none;width:40px;height:40px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:20px">{{ r.icon }}</span>
+<div style="flex:1;min-width:0"><div style="font:12px Inter,sans-serif;color:#8C8C88">{{ r.k }}</div><div style="font:600 15px/1.35 Inter,sans-serif;margin-top:2px">{{ r.v }}</div></div>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;gap:8px;margin:12px 16px 0">
+<button style="flex:1;height:48px;border:1.5px solid #1A1A1A;border-radius:999px;background:transparent;font:500 14px Inter,sans-serif;color:#1A1A1A;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-family:'Material Symbols Rounded';font-size:18px">calendar_add_on</span>Add to calendar</button>
+<button onClick="{{ restart }}" style="flex:1;height:48px;border:1.5px solid #1A1A1A;border-radius:999px;background:transparent;font:500 14px Inter,sans-serif;color:#1A1A1A;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-family:'Material Symbols Rounded';font-size:18px">edit_calendar</span>Reschedule</button>
+</div>
+</sc-if>
+</div>
+
+<sc-if value="{{ showCta }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px 16px 34px;background:linear-gradient(rgba(245,243,237,0),#F5F3ED 28%)">
+<button onClick="{{ next }}" disabled="{{ ctaDisabled }}" style="width:100%;height:56px;border-radius:999px;box-sizing:border-box;border:1.5px solid {{ ctaBd }};background:{{ ctaBg }};color:{{ ctaFg }};font:600 16px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">{{ ctaLabel }}<span style="font-family:'Material Symbols Rounded';font-size:20px">arrow_forward</span></button>
+</div>
+</sc-if>
+<sc-if value="{{ isBooked }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;bottom:0;padding:10px 16px 28px;background:linear-gradient(rgba(245,243,237,0),#F5F3ED 30%)">
+<div style="display:flex;background:#1A1A1A;border-radius:30px;padding:6px;gap:4px">
+<a href="Homepage.dc.html#1c" style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:#B5B5AE;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">home</span>Home</a>
+<a href="Help.dc.html" style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;background:#D4FF3D;color:#1A1A1A;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">support</span>Help</a>
+<a href="Rides.dc.html" style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:#B5B5AE;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">bar_chart</span>Rides</a>
+</div></div>
+</sc-if>
+</div>
+</div>
+<sc-if value="{{ showPasted }}" hint-placeholder-val="{{ false }}"><img src="./pasted-1790119981364-0-mudb7tqg-4akg.png" alt="pasted-1790119981364-0" width="2670" height="1780" style="max-width: 100%; height: auto; display: block; object-fit: cover; width: 2670px; aspect-ratio: 2670 / 1780"></img></sc-if></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startStep&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;area&quot;,&quot;schedule&quot;],&quot;default&quot;:&quot;area&quot;,&quot;tsType&quot;:&quot;'area' | 'schedule'&quot;}}">
+const AREAS = [
+  { id: 'brakes', label: 'Brakes', icon: 'front_hand', desc: 'Levers, pads and discs', x: 60, y: 12 },
+  { id: 'seat', label: 'Seat', icon: 'chair', desc: 'Saddle and seat post', x: 36, y: 18 },
+  { id: 'battery', label: 'Battery', icon: 'battery_charging_full', desc: 'Battery, charger and power button', x: 52, y: 46 },
+  { id: 'motor', label: 'Motor & Pedals', icon: 'electric_bolt', desc: 'Pedal assist, cranks and pedals', x: 48, y: 72 },
+  { id: 'gears', label: 'Chain & Gears', icon: 'settings', desc: 'Chain, cassette and shifter', x: 22, y: 70 },
+  { id: 'wheels', label: 'Wheels & Tyres', icon: 'tire_repair', desc: 'Tyres, spokes and hubs', x: 80, y: 72 },
+  { id: 'other', label: 'Other', icon: 'more_horiz', desc: 'Something not listed here' }
+];
+const SYMPTOMS = {
+  other: [],
+  brakes: [['not-working', 'Brakes not working', 'Bike is slow to stop, or won\u2019t stop', 'warning'], ['squeak', 'Brakes squeaking', 'Noise when you brake', 'volume_up'], ['lever', 'Lever pulls to the bar', 'Lever goes further than it should', 'back_hand']],
+  seat: [['slip', 'Seat keeps slipping', 'It drops down while riding', 'arrow_downward'], ['stuck', 'Won\u2019t adjust', 'Can\u2019t move it up or down', 'height'], ['loose', 'Loose or wobbly', 'It moves side to side', 'vibration']],
+  battery: [['charge', 'Won\u2019t charge', 'Charger light doesn\u2019t come on', 'battery_alert'], ['drain', 'Drains too fast', 'Range is much lower than usual', 'battery_2_bar'], ['off', 'Won\u2019t turn on', 'Nothing happens when you press power', 'power_settings_new']],
+  motor: [['assist', 'No assist when pedalling', 'Feels like a normal bike', 'electric_bolt'], ['noise', 'Strange noise', 'Grinding or whirring from the motor', 'volume_up'], ['cut', 'Assist cuts out', 'Power comes and goes', 'power_off']],
+  gears: [['slip', 'Chain slipping', 'Pedals jump or skip', 'link_off'], ['shift', 'Gears won\u2019t change', 'Shifter feels stuck', 'settings'], ['noise', 'Clicking or grinding', 'Noise while pedalling', 'volume_up']],
+  wheels: [['flat', 'Flat or losing air', 'Tyre feels soft', 'tire_repair'], ['wobble', 'Wheel wobbles', 'Wheel isn\u2019t running straight', 'sync_problem'], ['noise', 'Rubbing or ticking', 'Noise as the wheel turns', 'volume_up']]
+};
+const DETAILS = {
+  'brakes/not-working': [['lever', 'Lever not doing anything', 'Squeezing it has no effect', 'do_not_touch'], ['fluid', 'Fluid leaking', 'Oily marks near the brake', 'water_drop']],
+  'brakes/squeak': [['wet', 'Only when it\u2019s wet', 'Quiet on dry days', 'rainy'], ['always', 'Every time I brake', 'Loud squeal each stop', 'campaign']],
+  'brakes/lever': [['bar', 'Lever touches the bar', 'No resistance left', 'back_hand'], ['spongy', 'Feels spongy', 'Soft and squishy to pull', 'touch_app']]
+};
+const GENERIC = [['always', 'It happens all the time', 'Every ride, every time', 'repeat'], ['sometimes', 'It comes and goes', 'Only on some rides', 'shuffle']];
+const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const DAYS = Array.from({ length: 7 }, (_, i) => { const d = new Date(2026, 8, 23 + i); return { i, dow: DOW[d.getDay()], num: d.getDate(), full: `${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}` }; });
+const SLOTS = { AM: ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30'], PM: ['12:30', '1:00', '1:30', '2:00', '3:00', '4:00', '5:00', '6:00'] };
+const TAKEN = (day, half, t) => ((day * 7 + t.length * 3 + (half === 'PM' ? 5 : 0) + parseInt(t)) % 5) === 0;
+const ORDER = ['area', 'symptom', 'detail', 'schedule', 'confirm', 'booked'];
+const NAMES = { area: 'Where is it', symptom: 'What\u2019s wrong', detail: 'Describe it', schedule: 'Schedule', confirm: 'Confirm', booked: 'Booked' };
+
+class Component extends DCLogic {
+  state = { step: 'area', hist: [], sel: [], sym: {}, det: {}, note: {}, day: null, half: 'AM', time: null };
+  componentDidMount() {
+    if (this.props.preset) { this.setState(this.props.preset); return; }
+    const q = new URLSearchParams(location.search).get('step') || this.props.startStep;
+    if (q === 'schedule') this.setState({ step: 'schedule', hist: ['area'] });
+  }
+  go(step) { this.setState(s => ({ step, hist: [...s.hist, s.step] })); this.scrollTop(); }
+  scrollTop() { requestAnimationFrame(() => document.querySelectorAll('[data-screen-label] > div').forEach(el => { el.scrollTop = 0; })); }
+  back = () => {
+    const { hist, step } = this.state;
+    if (step === 'booked') { location.href = 'Homepage.dc.html#1c'; return; }
+    if (!hist.length) { location.href = 'Help.dc.html'; return; }
+    this.setState({ step: hist[hist.length - 1], hist: hist.slice(0, -1) }); this.scrollTop();
+  };
+  renderVals() {
+    const s = this.state, step = s.step;
+    const selAreas = AREAS.filter(a => s.sel.includes(a.id));
+    const multi = selAreas.length > 1;
+    const UNSURE = ['unsure', 'I\u2019m not sure', 'A technician can help you figure it out', 'help'];
+    const detListFor = a => [...(DETAILS[`${a.id}/${s.sym[a.id]}`] || GENERIC), UNSURE];
+    const day = DAYS[s.day];
+    const OTHER = ['other', 'Other', 'Describe it in your own words', 'edit_note'];
+    const opt = (list, aid, key) => list.map(([id, label, hint, icon]) => {
+      const on = s[key][aid] === id;
+      return { label, hint, icon, showText: on && id === 'other', text: s.note[aid] || '', onText: e => { const v = e.target.value; this.setState(st => ({ note: { ...st.note, [aid]: v } })); }, bd: on ? '#1A1A1A' : 'transparent', bg: on ? '#D4FF3D' : '#fff', tile: on ? '#fff' : '#F5F3ED', dot: on ? '#1A1A1A' : 'transparent', check: on ? 'check' : '',
+        pick: () => this.setState(st => key === 'sym' ? { sym: { ...st.sym, [aid]: id }, det: { ...st.det, [aid]: undefined } } : { det: { ...st.det, [aid]: id } }) };
+    });
+    const idx = Math.min(ORDER.indexOf(step), 4);
+    const ready = { area: selAreas.length > 0, symptom: selAreas.every(a => s.sym[a.id] && (s.sym[a.id] !== 'other' || (s.note[a.id] || '').trim())), detail: selAreas.every(a => s.det[a.id]), schedule: s.day != null && !!s.time, confirm: true }[step];
+    const nextStep = { area: 'symptom', symptom: 'detail', detail: 'schedule', schedule: 'confirm', confirm: 'booked' }[step];
+    const issue = selAreas.length ? selAreas.map(a => { const sy = s.sym[a.id] === 'other' ? [0, '\u201c' + (s.note[a.id] || '').trim() + '\u201d'] : SYMPTOMS[a.id].find(x => x[0] === s.sym[a.id]); const d = s.det[a.id]; const dv = d === 'unsure' ? 'not sure' : ((detListFor(a).find(x => x[0] === d) || [])[1]); return [a.label, sy && sy[1], dv].filter(Boolean).join(' \u00b7 '); }).join('; ') : 'Not sure yet, I\u2019ll show the technician';
+    const when = day && s.time ? `${day.full}, ${s.time} ${s.half.toLowerCase()}` : '';
+    const rows = r => r.map((x, i) => ({ ...x, line: i === r.length - 1 ? 'transparent' : '#EFEDE6' }));
+    return {
+      stepName: NAMES[step],
+      back: this.back,
+      backLabel: step === 'booked' ? 'Home' : 'Back',
+      showProgress: step !== 'booked',
+      progress: [0, 1, 2, 3, 4].map(i => ({ bg: i <= idx ? '#1A1A1A' : '#DEDBD2' })),
+      rootMinH: this.props.embedded ? 'auto' : '100vh', showPasted: !this.props.embedded, isArea: step === 'area', isList: step === 'symptom' || step === 'detail', isSchedule: step === 'schedule', isConfirm: step === 'confirm', isBooked: step === 'booked',
+      pulse: React.createElement('span', { style: { position: 'absolute', width: 26, height: 26, borderRadius: 13, background: '#D4FF3D', animation: 'pulse 1.4s ease-out infinite' } }),
+      areas: AREAS.map(a => { const on = s.sel.includes(a.id); return { label: a.label, x: a.x + '%', y: a.y + '%', on, mark: on ? 'check' : 'add', bg: on ? '#D4FF3D' : '#fff', chipBg: on ? '#D4FF3D' : '#F5F3ED', chipBd: on ? '#1A1A1A' : 'transparent', pick: () => this.setState(st => ({ sel: st.sel.includes(a.id) ? st.sel.filter(x => x !== a.id) : [...st.sel, a.id], sym: a.id === 'other' ? { ...st.sym, other: 'other' } : st.sym })), hasPos: a.x != null }; }),
+      get markers() { return this.areas.filter(m => m.hasPos); },
+      toggleCal: () => this.setState(st => ({ cal: !st.cal })),
+      calBg: s.cal ? '#D4FF3D' : 'transparent',
+      calIcon: s.cal ? 'event_available' : 'calendar_add_on',
+      calLabel: s.cal ? 'Will be added to your calendar' : 'Add to calendar',
+      hasSel: selAreas.length > 0,
+      selCount: selAreas.length === 1 ? '1 area selected' : selAreas.length + ' areas selected',
+      selRows: selAreas.map((a, i) => ({ label: a.label, icon: a.icon, desc: a.desc, line: i === selAreas.length - 1 ? 'transparent' : '#EFEDE6', remove: () => this.setState(st => ({ sel: st.sel.filter(x => x !== a.id) })) })),
+      skipToCall: () => this.setState({ sel: [], sym: {}, det: {} }, () => this.go('schedule')),
+      crumb: multi ? selAreas.map(a => a.label).join(' \u00b7 ') : (selAreas[0] ? selAreas[0].label : ''),
+      crumbIcon: multi ? 'category' : (selAreas[0] ? selAreas[0].icon : ''),
+      listTitle: step === 'symptom' ? (multi ? "What's wrong?" : `What's wrong with the ${selAreas[0] ? selAreas[0].label.toLowerCase() : 'bike'}?`) : 'Describe the issue',
+      listSub: step === 'symptom' ? (multi ? 'Pick the closest match for each area.' : 'Pick the one that sounds closest.') : 'This helps the technician prepare. Not sure is a fine answer.',
+      groups: selAreas.map(a => ({ label: a.label, icon: a.icon, options: step === 'symptom' ? opt([...SYMPTOMS[a.id], OTHER], a.id, 'sym') : opt(detListFor(a), a.id, 'det') })),
+      showGroupHead: multi,
+      notSure: step === 'detail' && selAreas.some(a => s.det[a.id] === 'unsure'),
+      days: DAYS.map(d => { const on = s.day === d.i; return { dow: d.dow, num: d.num, bg: on ? '#D4FF3D' : '#fff', bd: on ? '#1A1A1A' : 'transparent', sub: on ? '#1A1A1A' : '#8C8C88', pick: () => this.setState({ day: d.i, time: null }) }; }),
+      halves: ['AM', 'PM'].map(h => ({ label: h, bg: s.half === h ? '#1A1A1A' : 'transparent', fg: s.half === h ? '#F5F3ED' : '#1A1A1A', pick: () => this.setState({ half: h, time: null }) })),
+      slots: SLOTS[s.half].map(t => { const taken = s.day == null ? false : TAKEN(s.day, s.half, t); const on = s.time === t; return { label: t, taken, strike: taken ? 'line-through' : 'none', bg: on ? '#D4FF3D' : (taken ? 'transparent' : '#fff'), bd: on ? '#1A1A1A' : (taken ? '#DEDBD2' : 'transparent'), fg: taken ? '#B5B5AE' : '#1A1A1A', pick: () => { if (s.day == null) this.setState({ day: 0 }); if (!taken) this.setState({ time: t }); } }; }),
+      summary: rows([
+        { icon: 'calendar_month', k: 'Day and time', v: when, edit: () => this.go('schedule') },
+        { icon: 'videocam', k: 'How', v: '15-minute video call in the app' },
+        { icon: 'build', k: 'Issue', v: issue },
+        { icon: 'pedal_bike', k: 'Bike', v: 'Specialized Haul ST' }
+      ]),
+      bookedRows: rows([
+        { icon: 'calendar_month', k: 'When', v: when },
+        { icon: 'videocam', k: 'How', v: '15-minute video call in the app' },
+        { icon: 'build', k: 'Issue', v: issue }
+      ]),
+      restart: () => this.setState(st => ({ step: 'schedule', hist: [...st.hist, 'booked'], time: null })),
+      showCta: step !== 'booked',
+      ctaLabel: step === 'confirm' ? 'Book call' : 'Confirm',
+      ctaDisabled: !ready,
+      ctaBg: ready ? '#D4FF3D' : 'transparent', ctaBd: ready ? '#1A1A1A' : '#C9C6BC', ctaFg: ready ? '#1A1A1A' : '#A8A59C',
+      next: () => { if (ready) this.go(nextStep); }
+    };
+  }
+}
+</script>
+</body>
+</html>

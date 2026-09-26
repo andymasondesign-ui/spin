@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Inter:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL@24,400,0..1&display=swap" rel="stylesheet"><style>body{margin:0;background:#E9E7E0;font-family:Inter,system-ui,sans-serif;color:#1A1A1A}a{color:#1A1A1A;text-decoration:none}a:hover{color:#8A9A6B}</style></helmet>
+<div style="min-height:{{ rootMinH }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px 20px;box-sizing:border-box">
+<div style="font:400 11px system-ui,sans-serif;color:rgba(0,0,0,.55)">Rides · User Flow 3 · {{ viewName }}</div>
+<div data-screen-label="Rides" style="width:390px;height:844px;border-radius:48px;overflow:hidden;position:relative;background:#F5F3ED;box-shadow:0 0 0 10px #1A1A1A,0 30px 60px rgba(0,0,0,.25);flex:none">
+<div style="height:100%;overflow-y:auto;padding-bottom:120px;box-sizing:border-box">
+<div style="height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:600 15px Inter,sans-serif;background:{{ statusBg }}"><span>9:41</span><span style="white-space:nowrap;font-family:'Material Symbols Rounded';font-size:18px">signal_cellular_alt wifi battery_full</span></div>
+
+<sc-if value="{{ isTracker }}" hint-placeholder-val="{{ true }}">
+<div style="background:#D4FF3D;padding-bottom:84px;border-radius:0 0 36px 36px">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 20px 0">
+<img src="assets/spin-logo-dark.svg" alt="Spin Ebikes" style="height:30px;display:block"></img>
+<div style="display:flex;gap:8px">
+<button aria-label="Notifications" style="width:44px;height:44px;border-radius:22px;border:none;background:#1A1A1A;color:#F5F3ED;position:relative;cursor:pointer;font-family:'Material Symbols Rounded';font-size:22px">notifications<span style="position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:4px;background:#D4FF3D"></span></button>
+<button aria-label="Account" style="width:44px;height:44px;border-radius:22px;border:2px solid #1A1A1A;padding:0;overflow:hidden;cursor:pointer;background:#F5F3ED;display:block"><img src="https://images.unsplash.com/photo-1593158500181-996ca96a02fd?q=80&w=200&auto=format&fit=crop&crop=faces" alt="Laura" style="width:100%;height:100%;object-fit:cover;display:block"></img></button>
+</div></div>
+<h1 style="margin:26px 20px 0;font:700 36px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Your rides</h1>
+<p style="margin:12px 20px 0;font:15px/1.45 Inter,sans-serif;max-width:300px;text-wrap:pretty">Keep it up, you're on track for your best week yet.</p>
+</div>
+
+<div style="margin:-64px 16px 0;background:#fff;border-radius:28px;padding:18px;box-shadow:0 10px 30px rgba(26,26,26,.08)">
+<div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font:600 19px 'Bricolage Grotesque',sans-serif">Ride tracker</div><div style="font:12px Inter,sans-serif;color:#8C8C88;margin-top:2px">{{ range }}</div></div>
+<div style="display:flex;background:#F5F3ED;border-radius:16px;padding:3px">
+<button onClick="{{ week }}" style="border:none;border-radius:13px;padding:6px 12px;font:500 12px Inter,sans-serif;cursor:pointer;background:{{ wBg }};color:{{ wFg }}">Week</button>
+<button onClick="{{ month }}" style="border:none;border-radius:13px;padding:6px 12px;font:500 12px Inter,sans-serif;cursor:pointer;background:{{ mBg }};color:{{ mFg }}">Month</button></div></div>
+<div style="display:flex;gap:18px;margin-top:14px"><div><div style="font:600 26px 'Bricolage Grotesque',sans-serif">{{ km }}</div><div style="font:12px Inter,sans-serif;color:#8C8C88">ridden</div></div><div><div style="font:600 26px 'Bricolage Grotesque',sans-serif">{{ trips }}</div><div style="font:12px Inter,sans-serif;color:#8C8C88">trips</div></div></div>
+<div style="display:flex;align-items:flex-end;gap:8px;height:124px;margin-top:16px">
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="7"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;height:100%"><div style="width:100%;box-sizing:border-box;border-radius:8px;height:{{ b.h }};background:{{ b.bg }};border:{{ b.bd }}"></div><span style="display:flex;flex-direction:column;align-items:center;font:{{ b.lw }} 11px/1.3 Inter,sans-serif;color:{{ b.lc }}"><span>{{ b.l }}</span><span>{{ b.n }}</span></span></div></sc-for></div>
+</div>
+
+<sc-if value="{{ noIncentives }}" hint-placeholder-val="{{ true }}">
+<div style="margin:12px 16px 0;background:#D4FF3D;border-radius:28px;padding:20px">
+<span style="width:48px;height:48px;border-radius:16px;background:#1A1A1A;color:#D4FF3D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:24px">redeem</span>
+<div style="margin-top:14px;font:600 24px/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em">You have no rewards yet</div>
+<div style="margin-top:6px;font:14px/1.45 Inter,sans-serif;text-wrap:pretty">Pick a reward and every ride you take counts towards it.</div>
+<button onClick="{{ toChoose }}" style="margin-top:16px;width:100%;height:52px;border:none;border-radius:999px;background:#1A1A1A;color:#F5F3ED;font:600 15px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">Choose one<span style="font-family:'Material Symbols Rounded';font-size:20px;color:#D4FF3D">arrow_forward</span></button>
+</div>
+</sc-if>
+
+<sc-if value="{{ hasIncentives }}" hint-placeholder-val="{{ false }}">
+<div style="margin:12px 16px 0;background:#fff;border-radius:28px;padding:18px 18px 8px">
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="font:600 19px 'Bricolage Grotesque',sans-serif">My incentives</div><sc-if value="{{ canAdd }}" hint-placeholder-val="{{ true }}"><button onClick="{{ toChoose }}" style="height:34px;padding:0 12px;border:1.5px solid #1A1A1A;border-radius:999px;background:transparent;font:500 13px Inter,sans-serif;color:#1A1A1A;cursor:pointer;display:flex;align-items:center;gap:4px"><span style="font-family:'Material Symbols Rounded';font-size:18px">add</span>Add</button></sc-if><sc-if value="{{ isFull }}" hint-placeholder-val="{{ false }}"><span style="height:30px;padding:0 10px;border-radius:999px;background:#F5F3ED;display:flex;align-items:center;font:500 12px Inter,sans-serif">2 of 2 in use</span></sc-if></div>
+<sc-for list="{{ mine }}" as="m" hint-placeholder-count="1">
+<button onClick="{{ m.open }}" style="width:100%;border:none;background:transparent;text-align:left;padding:14px 0 12px;border-bottom:1px solid {{ m.line }};cursor:pointer;color:#1A1A1A;display:block">
+<span style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:40px;height:40px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:20px">{{ m.icon }}</span><span style="flex:1;min-width:0"><span style="display:block;font:600 15px Inter,sans-serif">{{ m.title }}</span><span style="display:block;font:12px Inter,sans-serif;color:#8C8C88;margin-top:2px">{{ m.left }}</span></span><span style="font-family:'Material Symbols Rounded';font-size:22px;color:#8C8C88">chevron_right</span></span>
+<span style="display:block;position:relative;height:30px;margin-top:12px;border-radius:999px;background:#E4E1D6;overflow:hidden"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ m.pct }};min-width:52px;border-radius:999px;background:#D4FF3D;box-shadow:inset 0 0 0 1.5px #1A1A1A;display:flex;align-items:center;justify-content:flex-start;padding-left:12px;box-sizing:border-box;font:600 13px Inter,sans-serif">{{ m.pct }}</span></span>
+<span style="display:flex;justify-content:space-between;margin-top:5px;font:11px Inter,sans-serif;color:#8C8C88"><span>0%</span><span>100%</span></span>
+</button>
+</sc-for>
+<sc-if value="{{ isFull }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px;margin:4px 0 10px;padding:10px 12px;border-radius:16px;background:#F5F3ED;font:12px/1.45 Inter,sans-serif;color:#55554F"><span style="font-family:'Material Symbols Rounded';font-size:18px;color:#1A1A1A">info</span>You can work towards 2 incentives at a time. Earn one to unlock a new slot.</div></sc-if>
+</div>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{ isChoose }}" hint-placeholder-val="{{ false }}">
+<div style="background:#D4FF3D;padding:6px 20px 28px;border-radius:0 0 36px 36px"><div><button onClick="{{ back }}" style="height:40px;padding:0 16px 0 10px;border:1.5px solid #1A1A1A;border-radius:999px;background:#fff;display:flex;align-items:center;gap:2px;font:500 14px Inter,sans-serif;color:#1A1A1A;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_left</span>Back</button></div>
+<div style="padding-top:18px">
+<h1 style="margin:0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Choose an incentive</h1>
+<p style="margin:10px 0 0;font:15px/1.45 Inter,sans-serif;max-width:320px;text-wrap:pretty">Every ride counts towards it. You can work towards up to 2 incentives at a time.</p>
+<div style="display:flex;align-items:center;gap:8px;margin-top:14px"><span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;background:#1A1A1A;color:#F5F3ED;font:600 12px Inter,sans-serif"><span style="display:flex;gap:3px"><sc-for list="{{ slots }}" as="sl" hint-placeholder-count="2"><span style="width:8px;height:8px;border-radius:4px;background:{{ sl.bg }}"></span></sc-for></span>{{ slotsLabel }}</span></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;margin:18px 16px 0">
+<sc-for list="{{ options }}" as="o" hint-placeholder-count="3">
+<div role="button" tabIndex="0" onClick="{{ o.pick }}" style="width:100%;box-sizing:border-box;text-align:left;border:2px solid {{ o.bd }};background:{{ o.bg }};border-radius:26px;padding:12px;display:flex;align-items:center;gap:14px;cursor:pointer;color:#1A1A1A">
+<span style="flex:none;width:76px;height:76px;border-radius:20px;background:{{ o.tile }};display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:34px">{{ o.icon }}</span>
+<span style="flex:1;min-width:0"><span style="display:block;font:600 17px/1.2 'Bricolage Grotesque',sans-serif">{{ o.title }}</span><span style="display:block;font:13px/1.4 Inter,sans-serif;color:#55554F;margin-top:3px">{{ o.desc }}</span><span style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;height:24px;padding:0 9px;border-radius:999px;background:{{ o.goalBg }};font:500 12px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:15px">flag</span>{{ o.goal }}</span><button onClick="{{ o.info }}" style="display:flex;align-items:center;gap:4px;margin-top:10px;height:32px;padding:0 12px;border:1.5px solid #1A1A1A;border-radius:999px;background:transparent;font:600 12px Inter,sans-serif;color:#1A1A1A;cursor:pointer">More info<span style="font-family:'Material Symbols Rounded';font-size:16px">arrow_forward</span></button></span>
+<span style="flex:none;align-self:flex-start;width:24px;height:24px;border-radius:12px;box-sizing:border-box;border:2px solid #1A1A1A;background:{{ o.dot }};display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:16px;color:#D4FF3D">{{ o.check }}</span>
+</div>
+</sc-for>
+</div>
+<button onClick="{{ back }}" style="display:block;margin:16px auto 0;border:none;background:transparent;font:500 14px Inter,sans-serif;color:#1A1A1A;text-decoration:underline;cursor:pointer;padding:10px">I don't want any of these yet</button>
+</sc-if>
+
+<sc-if value="{{ isAdded }}" hint-placeholder-val="{{ false }}">
+<div style="margin:24px 16px 0;background:#D4FF3D;border-radius:32px;padding:32px 20px 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
+<span style="width:72px;height:72px;border-radius:36px;background:#1A1A1A;color:#D4FF3D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:40px">check</span>
+<h1 style="margin:18px 0 0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Incentive added</h1>
+<p style="margin:10px 0 0;font:15px/1.45 Inter,sans-serif;max-width:290px;text-wrap:pretty">Every ride from now on counts towards it. We'll let you know when you've earned it.</p>
+</div>
+<div style="margin:12px 16px 0;background:#fff;border-radius:28px;padding:18px">
+<div style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:56px;height:56px;border-radius:18px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:28px">{{ added.icon }}</span><div style="flex:1;min-width:0"><div style="font:600 19px/1.15 'Bricolage Grotesque',sans-serif">{{ added.title }}</div><div style="font:13px/1.4 Inter,sans-serif;color:#55554F;margin-top:3px">{{ added.desc }}</div></div></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:14px">
+<div style="background:#F5F3ED;border-radius:14px;padding:12px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">{{ added.goal }}</div><div style="font:11px Inter,sans-serif;color:#8C8C88">to earn it</div></div>
+<div style="background:#F5F3ED;border-radius:14px;padding:12px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">{{ added.pct }}</div><div style="font:11px Inter,sans-serif;color:#8C8C88">progress</div></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;margin:12px 16px 0">
+<button onClick="{{ toTracker }}" style="width:100%;height:56px;border-radius:999px;border:1.5px solid #1A1A1A;background:#1A1A1A;color:#F5F3ED;font:600 16px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">View my tracker<span style="font-family:'Material Symbols Rounded';font-size:20px;color:#D4FF3D">arrow_forward</span></button>
+<sc-if value="{{ moreAvail }}" hint-placeholder-val="{{ true }}"><button onClick="{{ toChoose }}" style="width:100%;height:52px;border-radius:999px;border:1.5px solid #1A1A1A;background:transparent;color:#1A1A1A;font:500 15px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-family:'Material Symbols Rounded';font-size:20px">add</span>Choose another</button></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSingle }}" hint-placeholder-val="{{ false }}">
+<div style="padding:6px 20px 0"><button onClick="{{ back }}" style="height:40px;padding:0 16px 0 10px;border:1.5px solid #1A1A1A;border-radius:999px;background:#fff;display:flex;align-items:center;gap:2px;font:500 14px Inter,sans-serif;color:#1A1A1A;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_left</span>Back</button></div>
+<div style="margin:18px 16px 0;background:#fff;border-radius:28px;padding:20px">
+<div style="font:500 12px Inter,sans-serif;color:#8C8C88">My incentive</div>
+<div style="display:flex;align-items:center;gap:14px;margin-top:10px"><span style="flex:none;width:64px;height:64px;border-radius:20px;background:#D4FF3D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:30px">{{ one.icon }}</span><div><div style="font:600 24px/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em">{{ one.title }}</div><div style="font:13px/1.4 Inter,sans-serif;color:#55554F;margin-top:4px">{{ one.desc }}</div></div></div>
+<div style="position:relative;height:40px;margin-top:20px;border-radius:999px;background:#E4E1D6;overflow:hidden"><div style="position:absolute;left:0;top:0;bottom:0;width:{{ one.pct }};min-width:60px;border-radius:999px;background:#D4FF3D;box-shadow:inset 0 0 0 1.5px #1A1A1A;display:flex;align-items:center;justify-content:flex-start;padding-left:14px;box-sizing:border-box;font:600 15px Inter,sans-serif">{{ one.pct }}</div></div>
+<div style="display:flex;justify-content:space-between;margin-top:6px;font:11px Inter,sans-serif;color:#8C8C88"><span>0%</span><span>100%</span></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:16px">
+<div style="background:#F5F3ED;border-radius:14px;padding:12px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">{{ one.done }}</div><div style="font:11px Inter,sans-serif;color:#8C8C88">done so far</div></div>
+<div style="background:#F5F3ED;border-radius:14px;padding:12px"><div style="font:600 17px 'Bricolage Grotesque',sans-serif">{{ one.togo }}</div><div style="font:11px Inter,sans-serif;color:#8C8C88">to go</div></div>
+</div>
+</div>
+<div style="margin:12px 16px 0;background:#1A1A1A;color:#F5F3ED;border-radius:28px;padding:20px">
+<div style="font:600 20px 'Bricolage Grotesque',sans-serif">Find a new incentive</div>
+<div style="margin-top:4px;font:13px/1.45 Inter,sans-serif;color:#B5B5AE">{{ exploreNote }}</div>
+<sc-if value="{{ canAdd }}" hint-placeholder-val="{{ true }}"><button onClick="{{ toChoose }}" style="margin-top:16px;width:100%;height:52px;border:none;border-radius:999px;background:#D4FF3D;color:#1A1A1A;font:600 15px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">Explore<span style="font-family:'Material Symbols Rounded';font-size:20px">arrow_forward</span></button></sc-if>
+</div>
+</sc-if>
+</div>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:16px;right:16px;bottom:104px;background:#1A1A1A;color:#F5F3ED;border-radius:18px;padding:12px 16px;font:13px/1.4 Inter,sans-serif;display:flex;gap:10px;align-items:center"><span style="font-family:'Material Symbols Rounded';font-size:20px;color:#D4FF3D">check_circle</span>{{ toast }}</div></sc-if>
+
+<sc-if value="{{ isChoose }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px 16px 34px;background:linear-gradient(rgba(245,243,237,0),#F5F3ED 28%)">
+<button onClick="{{ confirm }}" disabled="{{ ctaDisabled }}" style="width:100%;height:56px;border-radius:999px;box-sizing:border-box;border:1.5px solid {{ ctaBd }};background:{{ ctaBg }};color:{{ ctaFg }};font:600 16px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">Confirm<span style="font-family:'Material Symbols Rounded';font-size:20px">arrow_forward</span></button>
+</div>
+</sc-if>
+<sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;left:0;right:0;bottom:0;padding:10px 16px 28px;background:linear-gradient(rgba(245,243,237,0),#F5F3ED 30%)">
+<div style="display:flex;background:#1A1A1A;border-radius:30px;padding:6px;gap:4px">
+<a href="Homepage.dc.html#1c" style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:#B5B5AE;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">home</span>Home</a>
+<a href="Help.dc.html" style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:#B5B5AE;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">support</span>Help</a>
+<div style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;background:#D4FF3D;color:#1A1A1A;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">bar_chart</span>Rides</div>
+</div></div>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INCENTIVES = [
+  { id: 'sticker', icon: 'sell', title: 'Spin sticker pack', desc: 'Five weatherproof stickers for your bike or helmet.', goal: 'Ride 50 km', unit: 'km', target: 50, done: 0 },
+  { id: 'coffee', icon: 'local_cafe', title: 'Free coffee', desc: 'A drink on us at any partner café.', goal: 'Take 10 trips', unit: 'trips', target: 10, done: 0 },
+  { id: 'light', icon: 'flashlight_on', title: 'Bike light upgrade', desc: 'Swap your standard light for a brighter one.', goal: 'Ride 150 km', unit: 'km', target: 150, done: 0 },
+  { id: 'discount', icon: 'percent', title: '10% off next month', desc: 'Taken off your next subscription payment.', goal: 'Ride 300 km', unit: 'km', target: 300, done: 0 }
+];
+const DATA = {
+  week: { v: [6, 12, 0, 9, 14, null, null], l: ['M', 'T', 'W', 'T', 'F', 'S', 'S'], n: [21, 22, 23, 24, 25, 26, 27], hi: 4, km: '41 km', trips: '5', range: 'Mon 21 – Sun 27 Sep' },
+  month: { v: [22, 52, 50, 41, null], l: ['1–6', '7–13', '14–20', '21–27', '28–30'], n: ['Sep', 'Sep', 'Sep', 'Sep', 'Sep'], hi: 3, km: '165 km', trips: '21', range: 'September 2026' }
+};
+const fmt = (n, u) => (u === 'km' ? (Math.round(n * 10) / 10) + ' km' : n + ' ' + u);
+
+class Component extends DCLogic {
+  state = { view: 'tracker', range: 'week', mine: [], pick: null, open: null, from: 'tracker', toast: '' };
+  componentDidMount() { if (this.props.preset) this.setState(this.props.preset); }
+  go(view, extra = {}) { this.setState(s => ({ view, from: s.view, ...extra })); requestAnimationFrame(() => document.querySelectorAll('[data-screen-label] > div').forEach(el => { el.scrollTop = 0; })); }
+  flash(t) { this.setState({ toast: t }); clearTimeout(this.tm); this.tm = setTimeout(() => this.setState({ toast: '' }), 2400); }
+  renderVals() {
+    const s = this.state, d = DATA[s.range], max = Math.max(...d.v), w = s.range === 'week';
+    const prog = i => { const p = Math.round(i.done / i.target * 100); return { ...i, pct: p + '%', left: fmt(+(i.target - i.done).toFixed(1), i.unit) + ' to go', done: fmt(i.done, i.unit), togo: fmt(+(i.target - i.done).toFixed(1), i.unit) }; };
+    const mine = s.mine.map(id => INCENTIVES.find(i => i.id === id)).map(prog);
+    const avail = INCENTIVES.filter(i => !s.mine.includes(i.id));
+    const one = s.open ? prog(INCENTIVES.find(i => i.id === s.open)) : prog(INCENTIVES[0]);
+    const names = { tracker: mine.length ? 'Ride tracker / My incentives' : 'Ride tracker, no rewards yet', choose: 'Find incentives', added: 'New incentive added', single: 'Single incentive view' };
+    return {
+      viewName: names[s.view], rootMinH: this.props.embedded ? 'auto' : '100vh',
+      statusBg: s.view === 'tracker' || s.view === 'choose' ? '#D4FF3D' : 'transparent',
+      isTracker: s.view === 'tracker', isChoose: s.view === 'choose', isSingle: s.view === 'single', isAdded: s.view === 'added',
+      showNav: s.view !== 'choose' && s.view !== 'added',
+      noIncentives: mine.length === 0, hasIncentives: mine.length > 0,
+      km: d.km, trips: d.trips,
+      range: d.range,
+      bars: d.v.map((v, i) => ({ l: d.l[i], n: d.n ? d.n[i] : '', h: v == null ? '100%' : Math.max(6, Math.round(v / max * 76)) + '%', bg: v == null ? 'transparent' : (i === d.hi ? '#1A1A1A' : (v ? '#E4E1D6' : '#EFEDE6')), bd: v == null ? '1.5px dashed #DEDBD2' : 'none', lc: i === d.hi ? '#1A1A1A' : '#8C8C88', lw: i === d.hi ? '600' : '400' })),
+      week: () => this.setState({ range: 'week' }), month: () => this.setState({ range: 'month' }),
+      wBg: w ? '#1A1A1A' : 'transparent', wFg: w ? '#F5F3ED' : '#55554F', mBg: w ? 'transparent' : '#1A1A1A', mFg: w ? '#55554F' : '#F5F3ED',
+      mine: mine.map((m, i) => ({ ...m, line: i === mine.length - 1 ? 'transparent' : '#EFEDE6', open: () => this.go('single', { open: m.id }) })),
+      one,
+      toChoose: () => this.go('choose', { pick: null }),
+      back: () => this.go(s.view === 'choose' ? s.from === 'single' ? 'single' : 'tracker' : 'tracker'),
+      options: avail.map(o => { const on = s.pick === o.id; return { ...o, bd: on ? '#1A1A1A' : 'transparent', bg: on ? '#D4FF3D' : '#fff', tile: on ? '#fff' : '#F5F3ED', goalBg: on ? '#fff' : '#F5F3ED', dot: on ? '#1A1A1A' : 'transparent', check: on ? 'check' : '', pick: () => this.setState(st => ({ pick: st.pick === o.id ? null : o.id })), info: e => e.stopPropagation() }; }),
+      ctaDisabled: !s.pick,
+      ctaBg: s.pick ? '#D4FF3D' : 'transparent', ctaBd: s.pick ? '#1A1A1A' : '#C9C6BC', ctaFg: s.pick ? '#1A1A1A' : '#A8A59C',
+      confirm: () => { if (!s.pick) return; this.setState(st => ({ mine: [...st.mine, st.pick], last: st.pick, pick: null })); this.go('added'); },
+      added: prog(INCENTIVES.find(i => i.id === (s.last || 'sticker'))),
+      moreAvail: avail.length > 0 && mine.length < 2,
+      toTracker: () => this.go('tracker'),
+      toast: s.toast,
+      canAdd: mine.length < 2, isFull: mine.length >= 2,
+      slots: [0, 1].map(i => ({ bg: i < mine.length ? '#D4FF3D' : '#55554F' })),
+      slotsLabel: `${mine.length} of 2 in use`,
+      exploreNote: mine.length < 2 ? `You can work towards up to 2 at a time. ${2 - mine.length} slot free.` : 'You\u2019re using both slots. Earn this one to choose another.'
+    };
+  }
+}
+</script>
+</body>
+</html>

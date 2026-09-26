@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Rounded:opsz,wght,FILL@24,400,0..1&amp;display=swap" rel="stylesheet"><style>body{margin:0;background:#E9E7E0;font-family:Inter,system-ui,sans-serif;color:#1A1A1A}a{color:#1A1A1A;text-decoration:none}a:hover{color:#8A9A6B}</style></helmet>
+<div style="min-height:{{ rootMinH }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px 20px;box-sizing:border-box">
+<div style="font:400 11px system-ui,sans-serif;color:rgba(0,0,0,.55)">Help · builds on 1c</div>
+<div data-screen-label="Help" style="width:390px;height:844px;border-radius:48px;overflow:hidden;position:relative;background:#F5F3ED;box-shadow:0 0 0 10px #1A1A1A,0 30px 60px rgba(0,0,0,.25);flex:none">
+<div style="height:100%;overflow-y:auto;padding-bottom:110px;box-sizing:border-box">
+<div style="background:#D4FF3D;padding-bottom:84px;border-radius:0 0 36px 36px">
+<div style="height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:600 15px Inter,sans-serif"><span>9:41</span><span style="white-space:nowrap;font-family:'Material Symbols Rounded';font-size:18px">signal_cellular_alt wifi battery_full</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 20px 0">
+<img src="assets/spin-logo-dark.svg" alt="Spin Ebikes" style="height:30px;display:block">
+<div style="display:flex;gap:8px">
+<button aria-label="Notifications" style="width:44px;height:44px;border-radius:22px;border:none;background:#1A1A1A;color:#F5F3ED;position:relative;cursor:pointer;font-family:'Material Symbols Rounded';font-size:22px">notifications<span style="position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:4px;background:#D4FF3D"></span></button>
+<button aria-label="Account" style="width:44px;height:44px;border-radius:22px;border:2px solid #1A1A1A;padding:0;overflow:hidden;cursor:pointer;background:#F5F3ED;display:block"><img src="https://images.unsplash.com/photo-1593158500181-996ca96a02fd?q=80&w=200&auto=format&fit=crop&crop=faces" alt="Laura" style="width:100%;height:100%;object-fit:cover;display:block"></img></button>
+</div></div>
+<h1 style="margin: 26px 20px 0; font: 700 44px/1 'Bricolage Grotesque',sans-serif; letter-spacing: -.03em; font-size: 36px">How can we help?</h1>
+<p style="margin:12px 20px 0;font:15px/1.45 Inter,sans-serif;max-width:320px;text-wrap:pretty">Repairs and servicing are included in your plan, so there's nothing extra to pay.</p>
+</div>
+
+<div style="margin:-64px 16px 0;background:#fff;border-radius:28px;padding:18px;box-shadow:0 10px 30px rgba(26,26,26,.08)">
+<div style="display:flex;gap:14px;align-items:flex-start">
+<span style="flex:none;width:52px;height:52px;border-radius:18px;background:#D4FF3D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:26px">build</span>
+<div><div style="font:600 21px/1.15 'Bricolage Grotesque',sans-serif">I've got an issue</div><div style="font:13px/1.45 Inter,sans-serif;color:#55554F;margin-top:4px;text-wrap:pretty">Tap the part of your bike that's playing up and we'll help you work out what's wrong.</div></div>
+</div>
+<button onClick="{{ findIssue }}" style="margin-top:16px;width:100%;height:52px;border:none;border-radius:999px;background:#1A1A1A;color:#F5F3ED;font:600 15px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px" style-active="transform:scale(.98)">Find the issue<span style="font-family:'Material Symbols Rounded';font-size:20px;color:#D4FF3D">arrow_forward</span></button>
+<button onClick="{{ bookCall }}" style="margin-top:8px;width:100%;height:48px;border:1.5px solid #1A1A1A;border-radius:999px;background:transparent;color:#1A1A1A;font:500 14px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><span style="font-family:'Material Symbols Rounded';font-size:20px">videocam</span>Not sure? Book a technician call</button>
+</div>
+
+<div style="margin:22px 20px 10px;font:600 19px 'Bricolage Grotesque',sans-serif">Servicing</div>
+<div style="margin:0 16px;background:#fff;border-radius:28px;padding:6px">
+<button style="width:100%;border:none;background:transparent;display:flex;gap:14px;align-items:center;padding:12px;text-align:left;cursor:pointer;border-radius:22px;color:#1A1A1A" style-hover="background:#F5F3ED">
+<span style="flex:none;width:44px;height:44px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:22px">calendar_month</span>
+<span style="flex:1"><span style="display:block;font:600 15px Inter,sans-serif">Book maintenance</span><span style="display:block;font:13px Inter,sans-serif;color:#8C8C88;margin-top:2px">We collect it, or a mechanic comes to you</span></span>
+<span style="font-family:'Material Symbols Rounded';font-size:22px;color:#8C8C88">chevron_right</span></button>
+<div style="height:1px;background:#EFEDE6;margin:0 12px"></div>
+<button style="width:100%;border:none;background:transparent;display:flex;gap:14px;align-items:center;padding:12px;text-align:left;cursor:pointer;border-radius:22px;color:#1A1A1A" style-hover="background:#F5F3ED">
+<span style="flex:none;width:44px;height:44px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:22px">local_shipping</span>
+<span style="flex:1"><span style="display:block;font:600 15px Inter,sans-serif">Repair status</span><span style="display:block;font:13px Inter,sans-serif;color:#8C8C88;margin-top:2px">No repairs in progress</span></span>
+<span style="font-family:'Material Symbols Rounded';font-size:22px;color:#8C8C88">chevron_right</span></button>
+<div style="height:1px;background:#EFEDE6;margin:0 12px"></div>
+<button style="width:100%;border:none;background:transparent;display:flex;gap:14px;align-items:center;padding:12px;text-align:left;cursor:pointer;border-radius:22px;color:#1A1A1A" style-hover="background:#F5F3ED">
+<span style="flex:none;width:44px;height:44px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:22px">history</span>
+<span style="flex:1"><span style="display:block;font:600 15px Inter,sans-serif">Maintenance history</span><span style="display:block;font:13px Inter,sans-serif;color:#8C8C88;margin-top:2px">Last serviced 12 Sep · next due 3 Nov</span></span>
+<span style="font-family:'Material Symbols Rounded';font-size:22px;color:#8C8C88">chevron_right</span></button>
+</div>
+</div>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:16px;right:16px;bottom:104px;background:#1A1A1A;color:#F5F3ED;border-radius:18px;padding:12px 16px;font:13px/1.4 Inter,sans-serif">{{ toast }}</div></sc-if>
+
+<div style="position:absolute;left:0;right:0;bottom:0;padding:10px 16px 28px;background:linear-gradient(transparent,#F5F3ED 30%)">
+<div style="display:flex;background:#1A1A1A;border-radius:30px;padding:6px;gap:4px">
+<a href="Homepage.dc.html#1c" style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:#B5B5AE;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">home</span>Home</a>
+<div style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;background:#D4FF3D;color:#1A1A1A;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">support</span>Help</div>
+<a href="Rides.dc.html" style="flex:1;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;color:#B5B5AE;font:500 13px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px">bar_chart</span>Rides</a>
+</div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { toast: '' };
+  show(t) { this.setState({ toast: t }); clearTimeout(this.tm); this.tm = setTimeout(() => this.setState({ toast: '' }), 2200); }
+  renderVals() {
+    return {
+      toast: this.state.toast, rootMinH: this.props.embedded ? 'auto' : '100vh',
+      findIssue: () => { location.href = 'Issue Flow.dc.html'; },
+      bookCall: () => { location.href = 'Issue Flow.dc.html?step=schedule'; }
+    };
+  }
+}
+</script>
+</body>
+</html>

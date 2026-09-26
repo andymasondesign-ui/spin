@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Rounded:opsz,wght,FILL@24,400,0..1&amp;display=swap" rel="stylesheet"><script src="./image-slot.js"></script><style>body{margin:0;background:#E9E7E0;font-family:Inter,system-ui,sans-serif;color:#1A1A1A}a{color:#1A1A1A;text-decoration:none}a:hover{color:#8A9A6B}</style></helmet>
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;box-sizing:border-box">
+<div style="font:400 11px system-ui,sans-serif;color:rgba(0,0,0,.55)">Onboarding · User Flow 1 · {{ stepName }}</div>
+<div data-screen-label="Onboarding" style="width:390px;height:844px;border-radius:48px;overflow:hidden;position:relative;background:#F5F3ED;box-shadow:0 0 0 10px #1A1A1A,0 30px 60px rgba(0,0,0,.25);flex:none">
+<div style="height:100%;overflow-y:auto;padding-bottom:{{ padBottom }};box-sizing:border-box">
+<div style="height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font:600 15px Inter,sans-serif;background:{{ statusBg }}"><span>9:41</span><span style="white-space:nowrap;font-family:'Material Symbols Rounded';font-size:18px">signal_cellular_alt wifi battery_full</span></div>
+
+<sc-if value="{{ showBack }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;align-items:stretch;gap:22px;padding:6px 20px 0">
+<button onClick="{{ back }}" style="height:40px;padding:0 16px 0 10px;border:1.5px solid #1A1A1A;border-radius:999px;background:#fff;display:flex;align-items:center;gap:2px;font:500 14px Inter,sans-serif;color:#1A1A1A;cursor:pointer;flex:none;align-self:flex-start"><span style="font-family:'Material Symbols Rounded';font-size:20px">chevron_left</span>Back</button>
+<div style="flex:1;display:flex;gap:4px"><sc-for list="{{ progress }}" as="p" hint-placeholder-count="5"><div style="flex:1;height:5px;border-radius:3px;background:{{ p.bg }}"></div></sc-for></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isWelcome }}" hint-placeholder-val="{{ true }}">
+<div style="background:#D4FF3D;padding:8px 20px 96px;border-radius:0 0 36px 36px">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<img src="assets/spin-logo-dark.svg" alt="Spin Ebikes" style="height:30px;display:block"></img>
+<span style="width:44px;height:44px;border-radius:22px;border:2px solid #1A1A1A;overflow:hidden;box-sizing:border-box;display:block"><img src="https://images.unsplash.com/photo-1593158500181-996ca96a02fd?q=80&amp;w=200&amp;auto=format&amp;fit=crop&amp;crop=faces" alt="Laura" style="width:100%;height:100%;object-fit:cover;display:block"></img></span>
+</div>
+<h1 style="margin:22px 0 0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Welcome, Laura.</h1>
+<p style="margin:12px 0 0;font:15px/1.45 Inter,sans-serif;max-width:310px;text-wrap:pretty">Thanks for telling us a bit about you. We've used your answers to suggest the right bike and extras.</p>
+</div>
+<div style="margin:-72px 16px 0;background:#fff;border-radius:28px;padding:6px 18px;box-shadow:0 10px 30px rgba(26,26,26,.08)">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0 4px"><div style="font:600 19px 'Bricolage Grotesque',sans-serif">Your answers</div><button style="height:32px;padding:0 12px;border:1.5px solid #1A1A1A;border-radius:999px;background:#D4FF3D;font:600 12px Inter,sans-serif;color:#1A1A1A;cursor:pointer;display:flex;align-items:center;gap:4px"><span style="font-family:'Material Symbols Rounded';font-size:16px">edit</span>Edit</button></div>
+<sc-for list="{{ answers }}" as="r" hint-placeholder-count="4">
+<div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid {{ r.line }}"><span style="flex:none;width:40px;height:40px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:20px">{{ r.icon }}</span><div style="flex:1;min-width:0"><div style="font:12px Inter,sans-serif;color:#8C8C88">{{ r.k }}</div><div style="font:600 15px/1.35 Inter,sans-serif;margin-top:2px">{{ r.v }}</div></div></div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBike }}" hint-placeholder-val="{{ false }}">
+<div style="background:#D4FF3D;padding:8px 20px 28px;border-radius:0 0 36px 36px">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<img src="assets/spin-logo-dark.svg" alt="Spin Ebikes" style="height:30px;display:block">
+<button onClick="{{ toProfile }}" aria-label="Edit profile" style="height:44px;padding:0 6px 0 14px;border:2px solid #1A1A1A;border-radius:999px;background:#fff;display:flex;align-items:center;gap:8px;font:600 13px Inter,sans-serif;color:#1A1A1A;cursor:pointer">Edit profile<span style="width:32px;height:32px;border-radius:16px;overflow:hidden;display:block"><img src="https://images.unsplash.com/photo-1593158500181-996ca96a02fd?q=80&amp;w=200&amp;auto=format&amp;fit=crop&amp;crop=faces" alt="Laura" style="width:100%;height:100%;object-fit:cover;display:block"></span></button>
+</div>
+<h1 style="margin:22px 0 0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Choose your bike</h1>
+<p style="margin:10px 0 0;font:15px/1.45 Inter,sans-serif;max-width:320px;text-wrap:pretty">Every plan includes servicing, repairs and theft cover. Cancel or swap any time.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;margin:16px 16px 0">
+<sc-for list="{{ bikes }}" as="b" hint-placeholder-count="3">
+<div style="background:#fff;border-radius:28px;padding:10px;box-sizing:border-box;border:2px solid {{ b.bd }}">
+<div style="position:relative;aspect-ratio:676/464;width:100%;border-radius:20px;overflow:hidden;background:#F3F1EA">
+<image-slot id="{{ b.slot }}" shape="rounded" radius="20" fit="cover" placeholder="{{ b.ph }}"></image-slot>
+<span style="position:absolute;top:10px;left:10px;width:30px;height:30px;border-radius:15px;background:#1A1A1A;color:#F5F3ED;display:flex;align-items:center;justify-content:center;font:600 14px 'Bricolage Grotesque',sans-serif;pointer-events:none">{{ b.num }}</span>
+<sc-if value="{{ b.suggested }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;bottom:10px;left:10px;height:28px;padding:0 10px;border-radius:999px;background:#D4FF3D;border:1.5px solid #1A1A1A;display:flex;align-items:center;gap:4px;font:600 12px Inter,sans-serif;pointer-events:none"><span style="font-family:'Material Symbols Rounded';font-size:16px">auto_awesome</span>Suggested for you</span></sc-if>
+</div>
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:12px 8px 4px">
+<div style="min-width:0"><div style="font:12px Inter,sans-serif;color:#8C8C88">{{ b.type }}</div><div style="font:600 19px/1.15 'Bricolage Grotesque',sans-serif;margin-top:2px">{{ b.name }}</div></div>
+<div style="flex:none;text-align:right"><span style="font:700 24px 'Bricolage Grotesque',sans-serif">{{ b.priceLabel }}</span><span style="font:13px Inter,sans-serif;color:#8C8C88">/mo</span></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;padding:8px 8px 0">
+<sc-for list="{{ b.chips }}" as="c" hint-placeholder-count="3"><span style="display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 10px;border-radius:999px;background:#F5F3ED;font:500 12px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:16px">{{ c.icon }}</span>{{ c.t }}</span></sc-for>
+</div>
+<button onClick="{{ b.choose }}" style="margin-top:12px;width:100%;height:48px;border:1.5px solid #1A1A1A;border-radius:999px;background:{{ b.btnBg }};color:#1A1A1A;font:600 15px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">{{ b.btnLabel }}<span style="font-family:'Material Symbols Rounded';font-size:20px">arrow_forward</span></button>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
+<h1 style="margin:17px 20px 0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Confirm your bike</h1>
+<div style="margin:16px 16px 0;background:#fff;border-radius:28px;padding:10px">
+<div style="aspect-ratio:676/464;width:100%;border-radius:20px;overflow:hidden;background:#F3F1EA"><image-slot id="{{ bike.slot }}" shape="rounded" radius="20" fit="cover" placeholder="{{ bike.ph }}"></image-slot></div>
+<div style="padding:14px 8px 6px">
+<div style="font:12px Inter,sans-serif;color:#8C8C88">{{ bike.type }}</div>
+<div style="font:600 24px/1.1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;margin-top:2px">{{ bike.name }}</div>
+<p style="margin:8px 0 0;font:14px/1.45 Inter,sans-serif;color:#55554F;text-wrap:pretty">{{ bike.blurb }}</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px;padding:4px 8px 8px">
+<sc-for list="{{ bike.specs }}" as="sp" hint-placeholder-count="4">
+<div style="display:flex;align-items:center;gap:12px;padding:8px 0"><span style="flex:none;width:36px;height:36px;border-radius:12px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:20px">{{ sp.icon }}</span><span style="font:500 14px Inter,sans-serif">{{ sp.t }}</span></div>
+</sc-for>
+<button style="margin-top:8px;width:100%;height:48px;border-radius:999px;border:1.5px solid #1A1A1A;background:transparent;display:flex;align-items:center;justify-content:center;gap:6px;font:600 14px Inter,sans-serif;color:#1A1A1A;cursor:pointer">More info about this bike<span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span></button>
+</div>
+<div style="margin:4px 0 0;background:#F0E6C8;border-radius:20px;padding:14px 8px 8px">
+<div style="font:600 17px 'Bricolage Grotesque',sans-serif;padding:0 6px">Included in every plan</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px">
+<div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:10px;font:500 13px/1.3 Inter,sans-serif"><span style="flex:none;font-family:'Material Symbols Rounded';font-size:20px">build</span>Servicing &amp; repairs</div>
+<div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:10px;font:500 13px/1.3 Inter,sans-serif"><span style="flex:none;font-family:'Material Symbols Rounded';font-size:20px">gpp_good</span>Theft cover</div>
+<div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:10px;font:500 13px/1.3 Inter,sans-serif"><span style="flex:none;font-family:'Material Symbols Rounded';font-size:20px">shield_person</span>Third-party protection</div>
+<div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:10px;font:500 13px/1.3 Inter,sans-serif"><span style="flex:none;font-family:'Material Symbols Rounded';font-size:20px">lock</span>Bike lock</div>
+<div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:10px;font:500 13px/1.3 Inter,sans-serif"><span style="flex:none;font-family:'Material Symbols Rounded';font-size:20px">videocam</span>Technician video calls</div>
+<div style="display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:10px;font:500 13px/1.3 Inter,sans-serif"><span style="flex:none;font-family:'Material Symbols Rounded';font-size:20px">swap_horiz</span>Swap or cancel any time</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+<h1 style="margin:17px 20px 0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">{{ listTitle }}</h1>
+<p style="margin:8px 20px 0;font:15px/1.45 Inter,sans-serif;color:#55554F;text-wrap:pretty">{{ listSub }}</p>
+<div style="display:flex;flex-direction:column;gap:10px;margin:18px 16px 0">
+<sc-for list="{{ items }}" as="o" hint-placeholder-count="4">
+<div role="button" tabIndex="0" onClick="{{ o.toggle }}" style="width:100%;box-sizing:border-box;text-align:left;border:2px solid {{ o.bd }};background:{{ o.bg }};border-radius:26px;padding:12px;cursor:pointer;color:#1A1A1A;display:block">
+<sc-if value="{{ o.header }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;margin:0 0 10px;border-radius:999px;background:{{ o.headBg }};font:600 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase">{{ o.title }}</span></sc-if>
+<span style="display:flex;align-items:center;gap:14px">
+<span style="flex:none;width:{{ o.tileSize }};height:{{ o.tileSize }};border-radius:20px;background:{{ o.tile }};display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:32px"><sc-if value="{{ o.img }}" hint-placeholder-val="{{ false }}"><img src="{{ o.img }}" alt="" style="width:34px;height:34px;display:block"></img></sc-if><sc-if value="{{ o.noImg }}" hint-placeholder-val="{{ true }}">{{ o.icon }}</sc-if></span>
+<span style="flex:1;min-width:0">
+<sc-if value="{{ o.noHeader }}" hint-placeholder-val="{{ true }}"><span style="display:block;font:600 17px/1.2 'Bricolage Grotesque',sans-serif">{{ o.title }}</span></sc-if>
+<span style="display:block;font:13px/1.4 Inter,sans-serif;color:#55554F;margin-top:3px">{{ o.desc }}</span>
+<sc-if value="{{ o.header }}" hint-placeholder-val="{{ false }}"><span style="display:flex;flex-direction:column;gap:3px;margin-top:8px"><sc-for list="{{ o.points }}" as="pt" hint-placeholder-count="2"><span style="display:flex;gap:6px;font:12px/1.35 Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:15px">check</span>{{ pt }}</span></sc-for></span></sc-if>
+<span style="display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap"><span style="font:600 14px Inter,sans-serif">{{ o.priceLabel }}</span><sc-if value="{{ o.suggested }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:3px;height:22px;padding:0 8px;border-radius:999px;background:{{ o.sugBg }};font:500 11px Inter,sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:14px">auto_awesome</span>Suggested</span></sc-if><sc-if value="{{ o.header }}" hint-placeholder-val="{{ false }}"><button onClick="{{ o.info }}" style="display:flex;align-items:center;gap:4px;margin-top:10px;height:32px;padding:0 12px;border:1.5px solid #1A1A1A;border-radius:999px;background:transparent;font:600 12px Inter,sans-serif;color:#1A1A1A;cursor:pointer">More info<span style="font-family:'Material Symbols Rounded';font-size:16px">arrow_forward</span></button></sc-if></span>
+</span>
+<span style="flex:none;align-self:flex-start;width:24px;height:24px;border-radius:12px;box-sizing:border-box;border:2px solid #1A1A1A;background:{{ o.dot }};display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:16px;color:#D4FF3D">{{ o.check }}</span>
+</span>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{ isAccStep }}" hint-placeholder-val="{{ false }}"><button style="display:flex;margin:14px 16px 0;width:calc(100% - 32px);box-sizing:border-box;height:48px;padding:0 22px;border:1.5px solid #1A1A1A;border-radius:999px;background:transparent;align-items:center;justify-content:center;gap:6px;font:600 14px Inter,sans-serif;color:#1A1A1A;cursor:pointer"><span style="font-family:'Material Symbols Rounded';font-size:20px">add</span>View more accessories</button></sc-if>
+<sc-if value="{{ isAccStep }}" hint-placeholder-val="{{ false }}"><div style="margin:14px 16px 0;padding:14px 16px;border-radius:20px;background:#F0E6C8;display:flex;gap:10px;font:13px/1.45 Inter,sans-serif;text-wrap:pretty"><span style="flex:none;font-family:'Material Symbols Rounded';font-size:20px">info</span><span><strong style="font-weight:600">Accessories are yours to keep after 12 months.</strong> Each one is paid off over 12 monthly payments. If you end your subscription before then, the accessories must be returned with the bike.</span></div></sc-if>
+</sc-if>
+
+<sc-if value="{{ isCart }}" hint-placeholder-val="{{ false }}">
+<h1 style="margin:17px 20px 0;font:700 34px/1.05 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">Your cart</h1>
+<sc-for list="{{ cartSections }}" as="sec" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;justify-content:space-between;margin:20px 20px 10px"><div style="font:600 19px 'Bricolage Grotesque',sans-serif">{{ sec.label }}</div><button onClick="{{ sec.edit }}" style="height:32px;padding:0 12px;border:1.5px solid #1A1A1A;border-radius:999px;background:#D4FF3D;font:600 12px Inter,sans-serif;color:#1A1A1A;cursor:pointer;display:flex;align-items:center;gap:4px"><span style="font-family:'Material Symbols Rounded';font-size:16px">edit</span>Edit</button></div>
+<div style="margin:0 16px;background:#fff;border-radius:24px;padding:4px 16px">
+<sc-for list="{{ sec.rows }}" as="r" hint-placeholder-count="1">
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid {{ r.line }}"><span style="flex:none;width:44px;height:44px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:22px">{{ r.icon }}</span><span style="flex:1;min-width:0;font:500 14px/1.35 Inter,sans-serif">{{ r.t }}</span><span style="flex:none;font:600 14px Inter,sans-serif">{{ r.p }}</span></div>
+</sc-for>
+</div>
+</sc-for>
+</sc-if>
+
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+<div style="background:#D4FF3D;padding:14px 20px 30px;border-radius:0 0 36px 36px;display:flex;flex-direction:column;align-items:center;text-align:center">
+<span style="width:72px;height:72px;border-radius:36px;background:#1A1A1A;color:#D4FF3D;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:40px">check</span>
+<h1 style="margin:16px 0 0;font:700 36px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em">You're all set</h1>
+<p style="margin:10px 0 0;font:15px/1.45 Inter,sans-serif;max-width:290px;text-wrap:pretty">We'll email your delivery date. Your first ride is on its way.</p>
+</div>
+<div style="margin:16px 16px 0;background:#fff;border-radius:28px;padding:10px">
+<div style="aspect-ratio:676/464;width:100%;border-radius:20px;overflow:hidden;background:#F3F1EA"><image-slot id="{{ bike.slot }}" shape="rounded" radius="20" fit="cover" placeholder="{{ bike.ph }}"></image-slot></div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;padding:12px 8px 6px"><div><div style="font:12px Inter,sans-serif;color:#8C8C88">My bike</div><div style="font:600 19px 'Bricolage Grotesque',sans-serif;margin-top:2px">{{ bike.name }}</div></div><div style="font:600 15px Inter,sans-serif">{{ totalLabel }}/mo</div></div>
+</div>
+<sc-for list="{{ doneSections }}" as="sec" hint-placeholder-count="2">
+<div style="margin:20px 20px 10px;font:600 19px 'Bricolage Grotesque',sans-serif">{{ sec.label }}</div>
+<div style="margin:0 16px;background:#fff;border-radius:24px;padding:4px 16px">
+<sc-for list="{{ sec.rows }}" as="r" hint-placeholder-count="1">
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid {{ r.line }}"><span style="flex:none;width:40px;height:40px;border-radius:14px;background:#F5F3ED;display:flex;align-items:center;justify-content:center;font-family:'Material Symbols Rounded';font-size:20px">{{ r.icon }}</span><span style="flex:1;font:500 14px Inter,sans-serif">{{ r.t }}</span></div>
+</sc-for>
+</div>
+</sc-for>
+</sc-if>
+</div>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:16px;right:16px;top:60px;background:#1A1A1A;color:#F5F3ED;border-radius:18px;padding:12px 16px;font:13px/1.4 Inter,sans-serif;display:flex;gap:10px;align-items:center;z-index:2"><span style="font-family:'Material Symbols Rounded';font-size:20px;color:#D4FF3D">check_circle</span>{{ toast }}</div></sc-if>
+
+<sc-if value="{{ isWelcome }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px 16px 34px;background:linear-gradient(rgba(245,243,237,0),#F5F3ED 28%)">
+<button onClick="{{ toBikes }}" style="width:100%;height:56px;border-radius:999px;border:1.5px solid #1A1A1A;background:#D4FF3D;color:#1A1A1A;font:600 16px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">Customise your subscription<span style="font-family:'Material Symbols Rounded';font-size:20px;color:#1A1A1A">arrow_forward</span></button>
+</div>
+</sc-if>
+
+<sc-if value="{{ showDrawer }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;bottom:0;background:#D4FF3D;border-radius:32px 32px 0 0;padding:18px 20px 30px;box-shadow:0 -10px 30px rgba(26,26,26,.12)">
+<div style="display:flex;align-items:center;gap:16px">
+<div style="flex:none"><div style="font:500 12px Inter,sans-serif">{{ drawerKicker }}</div><div><span style="font:700 34px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em">{{ totalLabel }}</span><span style="font:14px Inter,sans-serif">/mo</span></div></div>
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;border-left:1.5px solid #1A1A1A;padding-left:14px">
+<sc-for list="{{ lines }}" as="l" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;gap:8px;font:12px/1.3 Inter,sans-serif"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ l.t }}</span><span style="flex:none;font-weight:600">{{ l.p }}</span></div></sc-for>
+</div>
+</div>
+<sc-if value="{{ drawerButtons }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:8px;margin-top:16px">
+<button onClick="{{ next }}" style="flex:2;height:52px;border:none;border-radius:999px;background:#1A1A1A;color:#F5F3ED;font:600 15px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">{{ nextLabel }}<span style="font-family:'Material Symbols Rounded';font-size:20px;color:#D4FF3D">arrow_forward</span></button>
+</div>
+</sc-if>
+<sc-if value="{{ isCart }}" hint-placeholder-val="{{ false }}">
+<div style="font:12px/1.4 Inter,sans-serif;margin-top:10px">Billed monthly from delivery. Servicing, repairs and theft cover included.</div>
+<button onClick="{{ next }}" style="margin-top:14px;width:100%;height:56px;border:none;border-radius:999px;background:#1A1A1A;color:#F5F3ED;font:600 16px Inter,sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">Check out now<span style="font-family:'Material Symbols Rounded';font-size:20px;color:#D4FF3D">arrow_forward</span></button>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button onClick="{{ cancel }}" style="flex:1;height:46px;border:1.5px solid #1A1A1A;border-radius:999px;background:transparent;color:#1A1A1A;font:500 14px Inter,sans-serif;cursor:pointer">Cancel</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;bottom:0;padding:16px 16px 34px;background:linear-gradient(rgba(245,243,237,0),#F5F3ED 28%)">
+<a href="Homepage.dc.html#1c" style="width:100%;height:56px;border-radius:999px;background:#D4FF3D;border:1.5px solid #1A1A1A;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:8px;font:600 16px Inter,sans-serif;color:#1A1A1A">Finish<span style="font-family:'Material Symbols Rounded';font-size:20px">arrow_forward</span></a>
+</div>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const BIKES = [
+  { id: 'haul', url: 'https://www.specialized.com/ca/en/haul-st/p/4276252', slot: 'bike-haul-st', ph: 'Drop Haul ST photo', type: 'Cargo ebike', name: 'Specialized Haul ST', price: 129, suggested: true, chips: [['inventory_2', 'Carries heavy loads'], ['accessibility_new', 'Step-through'], ['battery_charging_full', 'Long range']],
+    blurb: 'A step-through cargo bike for school runs, groceries and anything else you need to carry.',
+    specs: [['inventory_2', 'Front and rear racks for heavy loads'], ['battery_charging_full', 'Long-range battery'], ['accessibility_new', 'Low step-through frame'], ['light_mode', 'Integrated front and rear lights']] },
+  { id: 'vado', url: 'https://www.specialized.com/ca/en/shop/bikes/ebikes/turbo-vado-sl', slot: 'bike-vado-sl', ph: 'Drop Turbo Vado SL photo', type: 'Commuter ebike', name: 'Specialized Turbo Vado SL', price: 99, chips: [['speed', 'Lightweight'], ['commute', 'Built for commuting'], ['water_drop', 'Built-in mudguards']],
+    blurb: 'Light and quick, built for daily commutes and weekend rides around the city.',
+    specs: [['speed', 'Lightweight, nimble frame'], ['battery_charging_full', 'All-day commuting range'], ['settings', 'Low-maintenance drivetrain'], ['light_mode', 'Integrated lights']] },
+  { id: 'como', url: 'https://www.specialized.com/ca/en/shop/bikes/ebikes/turbo-como', slot: 'bike-turbo-como', ph: 'Drop Turbo Como photo', type: 'Comfort ebike', name: 'Specialized Turbo Como', price: 109, chips: [['airline_seat_recline_normal', 'Upright ride'], ['accessibility_new', 'Step-through'], ['shopping_basket', 'Basket mount']],
+    blurb: 'An upright, relaxed ride with a comfy saddle for easy cruising.',
+    specs: [['airline_seat_recline_normal', 'Upright riding position'], ['battery_charging_full', 'Plenty of range for errands'], ['accessibility_new', 'Step-through frame'], ['shopping_basket', 'Front basket mount']] }
+];
+const ACC = [
+  { id: 'lock', icon: 'lock', title: 'Bike lock', desc: 'A heavy-duty D-lock and cable for locking up anywhere.', price: 0, included: true },
+  { id: 'helmet', icon: 'sports_motorsports', img: 'assets/bike-helmet.svg', title: 'Helmet', desc: 'Lightweight, with a rear light built in.', price: 6, suggested: true },
+  { id: 'panniers', icon: 'work', title: 'Pannier bags', desc: 'Two waterproof bags that clip onto the rack.', price: 5, suggested: true },
+  { id: 'child', icon: 'child_care', title: 'Child seat', desc: 'Rear-mounted seat for kids up to 22 kg.', price: 9 },
+  { id: 'mount', icon: 'smartphone', title: 'Phone mount', desc: 'Keep maps in view on the handlebar.', price: 3 },
+  { id: 'rain', icon: 'rainy', title: 'Rain cover', desc: 'Keeps your bike dry when it\u2019s parked outside.', price: 4 }
+];
+const FEAT = [
+  { id: 'thirdparty', icon: 'shield_person', title: 'Third-party protection', desc: 'If you\u2019re in an accident, we cover damage or injury to the other party.', price: 0, included: true, points: ['Covers other people and their property', 'Legal help if a claim is made'] },
+  { id: 'assist', icon: 'support_agent', title: 'Onboarding assist', desc: 'A Spin expert helps you set up and ride with confidence.', price: 0, free: true, suggested: true, points: ['Delivery and fitting at home', 'First-ride session with an expert'] },
+  { id: 'range', icon: 'battery_plus', title: 'Extended range', desc: 'A larger battery so you can ride further.', price: 15, points: ['Ride further on a single charge', 'Fitted in place of your standard battery'] },
+  { id: 'health', icon: 'health_and_safety', title: 'Health insurance for you', desc: 'Cover for you while you ride, not just the bike.', price: 8, points: ['Personal accident cover', 'Physio after a crash'] }
+];
+const ORDER = ['bike', 'confirm', 'acc', 'feat', 'cart', 'done'];
+const NAMES = { welcome: 'Welcome', bike: 'Choose bike', confirm: 'Confirm bike', acc: 'Choose accessories', feat: 'Choose features', cart: 'Your cart', done: 'Confirmation' };
+const $ = n => '$' + n;
+
+class Component extends DCLogic {
+  state = { step: 'welcome', hist: [], bike: null, acc: ['lock'], feat: ['thirdparty'], toast: '', fromCart: false };
+  componentDidMount() { if (this.props.preset) this.setState(this.props.preset); }
+  go(step, extra = {}) { this.setState(s => ({ step, hist: [...s.hist, s.step], ...extra })); requestAnimationFrame(() => document.querySelectorAll('[data-screen-label] > div').forEach(el => { el.scrollTop = 0; })); }
+  flash(t) { this.setState({ toast: t }); clearTimeout(this.tm); this.tm = setTimeout(() => this.setState({ toast: '' }), 2400); }
+  back = () => { const h = this.state.hist; if (!h.length) return; this.setState({ step: h[h.length - 1], hist: h.slice(0, -1) }); };
+  toggle(key, id) { if (id === 'lock' || id === 'thirdparty') return; this.setState(s => ({ [key]: s[key].includes(id) ? s[key].filter(x => x !== id) : [...s[key], id] })); }
+  renderVals() {
+    const s = this.state, step = s.step;
+    const bike = BIKES.find(b => b.id === s.bike);
+    const accSel = ACC.filter(a => s.acc.includes(a.id)), accPaid = accSel.filter(a => !a.included), featSel = FEAT.filter(f => s.feat.includes(f.id)), featOpt = featSel.filter(f => !f.included);
+    const total = (bike ? bike.price : 0) + accSel.reduce((n, a) => n + a.price, 0) + featSel.reduce((n, f) => n + f.price, 0);
+    const sum = l => l.reduce((n, x) => n + x.price, 0);
+    const lines = bike ? [
+      { t: bike.name.replace('Specialized ', ''), p: $(bike.price) },
+      { t: accPaid.length ? `${accPaid.length} accessor${accPaid.length === 1 ? 'y' : 'ies'}` : 'Lock included', p: accPaid.length ? $(sum(accPaid)) : '' },
+      { t: featOpt.length ? `${featOpt.length} feature${featOpt.length === 1 ? '' : 's'}` : 'Protection included', p: featOpt.length ? (sum(featOpt) ? $(sum(featOpt)) : 'Free') : '' }
+    ] : [{ t: 'Choose a bike to start', p: '' }, { t: 'Servicing and repairs', p: 'Incl.' }, { t: 'Theft cover', p: 'Incl.' }];
+    const isAcc = step === 'acc', list = isAcc ? ACC : FEAT, key = isAcc ? 'acc' : 'feat';
+    const nextOf = { confirm: 'acc', acc: 'feat', feat: 'cart' };
+    const rows = r => r.map((x, i) => ({ ...x, line: i === r.length - 1 ? 'transparent' : '#EFEDE6' }));
+    const editTo = st => () => this.go(st);
+    const idx = ORDER.indexOf(step);
+    return {
+      stepName: NAMES[step],
+      isWelcome: step === 'welcome', isAccStep: step === 'acc', isBike: step === 'bike',
+      toBikes: () => this.go('bike'),
+      toProfile: () => this.go('welcome'),
+      answers: [['location_on', 'Location', 'London, UK'], ['directions_bike', 'Mostly riding for', 'School runs and groceries'], ['route', 'Typical day', 'About 12 km, some hills'], ['height', 'Your height', '168 cm, medium frame'], ['home', 'Storage', 'Ground-floor flat, no garage']].map(([icon, k, v], i, a) => ({ icon, k, v, line: i === a.length - 1 ? 'transparent' : '#EFEDE6' })), isConfirm: step === 'confirm', isList: isAcc || step === 'feat', isCart: step === 'cart', isDone: step === 'done',
+      showBack: !['welcome', 'bike', 'done'].includes(step),
+      statusBg: step === 'welcome' || step === 'bike' || step === 'done' ? '#D4FF3D' : 'transparent',
+      progress: [1, 2, 3, 4].map(i => ({ bg: i <= idx ? '#1A1A1A' : '#DEDBD2' })),
+      padBottom: step === 'cart' ? '330px' : step === 'bike' ? '140px' : '220px',
+      back: this.back,
+      bikes: BIKES.map((b, i) => { const on = s.bike === b.id; return { ...b, num: i + 1, chips: b.chips.map(([icon, t]) => ({ icon, t })), priceLabel: $(b.price), bd: on ? '#1A1A1A' : 'transparent', btnBg: on ? '#D4FF3D' : '#fff', btnLabel: on ? 'Chosen' : 'Choose', choose: () => { this.setState({ bike: b.id }); this.go('confirm'); } }; }),
+      bike: bike ? { ...bike, specs: bike.specs.map(([icon, t]) => ({ icon, t })) } : { ...BIKES[0], specs: [] },
+      listTitle: isAcc ? 'Choose accessories' : 'Choose features',
+      listSub: isAcc ? 'Add as many as you like. Suggestions are based on your onboarding answers.' : 'Optional extras for your plan. You can change these later.',
+      items: list.map(o => { const on = s[key].includes(o.id); return { ...o, img: o.img || '', noImg: !o.img, header: !isAcc, noHeader: isAcc, points: o.points || [], priceLabel: o.included ? 'Included with your plan' : o.free ? 'Free' : '+' + $(o.price) + '/mo' + (isAcc ? ' for 12 months' : ''), tileSize: isAcc ? '76px' : '64px', bd: on ? '#1A1A1A' : 'transparent', bg: on ? '#D4FF3D' : '#fff', tile: on ? '#fff' : '#F5F3ED', headBg: on ? '#fff' : '#D4FF3D', sugBg: on ? '#fff' : '#F5F3ED', dot: on ? '#1A1A1A' : 'transparent', check: on ? 'check' : '', toggle: () => this.toggle(key, o.id), info: ev => ev.stopPropagation() }; }),
+      cartSections: [
+        { label: 'Bike', edit: editTo('bike'), rows: rows(bike ? [{ icon: 'pedal_bike', t: bike.name, p: $(bike.price) }] : []) },
+        { label: 'Accessories', edit: editTo('acc'), rows: rows(accSel.length ? accSel.map(a => ({ icon: a.icon, t: a.title, p: a.included ? 'Incl.' : $(a.price) })) : [{ icon: 'remove', t: 'None added', p: '' }]) },
+        { label: 'Features', edit: editTo('feat'), rows: rows(featSel.length ? featSel.map(f => ({ icon: f.icon, t: f.title, p: f.included ? 'Incl.' : f.free ? 'Free' : $(f.price) })) : [{ icon: 'remove', t: 'None added', p: '' }]) }
+      ],
+      doneSections: [
+        { label: 'Accessories', rows: rows(accSel.length ? accSel.map(a => ({ icon: a.icon, t: a.title })) : [{ icon: 'remove', t: 'None added' }]) },
+        { label: 'Features', rows: rows(featSel.length ? featSel.map(f => ({ icon: f.icon, t: f.title })) : [{ icon: 'remove', t: 'None added' }]) }
+      ],
+      showDrawer: step !== 'done' && step !== 'welcome',
+      drawerKicker: step === 'cart' ? 'Total' : 'Your plan',
+      drawerButtons: ['confirm', 'acc', 'feat'].includes(step),
+      nextLabel: step === 'confirm' ? 'Confirm' : ((isAcc ? accPaid.length : featOpt.length) ? 'Confirm' : 'Skip'),
+      totalLabel: $(total),
+      lines,
+      next: () => this.go(step === 'cart' ? 'done' : nextOf[step]),
+      save: () => this.flash('Cart saved. Pick up where you left off any time.'),
+      cancel: () => this.setState({ step: 'welcome', hist: [], bike: null, acc: ['lock'], feat: ['thirdparty'] }),
+      toast: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>
