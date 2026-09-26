@@ -1,0 +1,799 @@
+/* Spin Ebikes: design tokens and shared styles, taken from the Claude Design prototypes in /project */
+
+:root {
+  --lime: #d4ff3d;
+  --ink: #1a1a1a;
+  --cream: #f5f3ed;
+  --canvas: #e9e7e0;
+  --sand: #f0e6c8;
+  --white: #fff;
+  --muted: #8c8c88;
+  --text-2: #55554f;
+  --grey-light: #b5b5ae;
+  --line: #efede6;
+  --track: #dedbd2;
+  --bar: #e4e1d6;
+  --photo-bg: #f3f1ea;
+  --disabled-bd: #c9c6bc;
+  --disabled-fg: #a8a59c;
+
+  --font-body: Inter, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --card-shadow: 0 10px 30px rgba(26, 26, 26, 0.08);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  font-family: var(--font-body);
+  color: var(--ink);
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  color: var(--ink);
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+/* Typographic defaults from the All Screens deck: balanced headings, no orphaned words */
+:where(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+}
+:where(p, li, blockquote, figcaption) {
+  text-wrap: pretty;
+}
+
+/* ── Icons (Material Symbols Rounded, ligature-based) ── */
+.ms {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Page + phone frame ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.page-nav {
+  display: flex;
+  gap: 6px;
+  font: 400 11px system-ui, sans-serif;
+  color: rgba(0, 0, 0, 0.55);
+}
+.page-nav a {
+  color: rgba(0, 0, 0, 0.55);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+.page-nav a:hover {
+  color: #8a9a6b;
+}
+.page-nav a.active {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--ink);
+}
+
+.phone {
+  width: 390px;
+  height: 844px;
+  border-radius: 48px;
+  overflow: hidden;
+  position: relative;
+  background: var(--cream);
+  box-shadow: 0 0 0 10px var(--ink), 0 30px 60px rgba(0, 0, 0, 0.25);
+  flex: none;
+}
+
+.phone-scroll {
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* On a real phone the app fills the screen instead of sitting in a mock device frame */
+@media (max-width: 480px) {
+  .page:not(.page--gallery) {
+    padding: 0;
+    gap: 0;
+    justify-content: flex-start;
+  }
+  .page:not(.page--gallery) .page-nav {
+    display: none;
+  }
+  .page:not(.page--gallery) .phone {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* ── Status bar ── */
+.status-bar {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  font: 600 15px var(--font-body);
+}
+.status-bar .ms {
+  font-size: 18px;
+}
+
+/* ── Top bar: logo, notifications, account ── */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px 0;
+}
+.top-bar__actions {
+  display: flex;
+  gap: 8px;
+}
+.logo {
+  height: 30px;
+  display: block;
+}
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  border: none;
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn__dot {
+  position: absolute;
+  top: 10px;
+  right: 11px;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--lime);
+}
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  border: 2px solid var(--ink);
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--cream);
+  display: block;
+  box-sizing: border-box;
+  flex: none;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Lime header block (Home, Help, Rides, Welcome, Choose bike, Choose incentive) ── */
+.lime-header {
+  background: var(--lime);
+  border-radius: 0 0 36px 36px;
+}
+.hero-date {
+  margin: 26px 20px 0;
+  font: 500 14px var(--font-body);
+  opacity: 0.7;
+}
+.hero-title {
+  margin: 26px 20px 0;
+  font: 700 36px/1 var(--font-display);
+  letter-spacing: -0.03em;
+}
+.hero-sub {
+  margin: 12px 20px 0;
+  font: 15px/1.45 var(--font-body);
+  max-width: 300px;
+  text-wrap: pretty;
+}
+
+/* Flow screen heading: 34px display type */
+.flow-title {
+  font: 700 34px/1.05 var(--font-display);
+  letter-spacing: -0.03em;
+}
+.flow-sub {
+  margin-top: 8px;
+  font: 15px/1.45 var(--font-body);
+  color: var(--text-2);
+  text-wrap: pretty;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--white);
+  border-radius: 28px;
+}
+.card--raised {
+  box-shadow: var(--card-shadow);
+}
+.section-title {
+  font: 600 19px var(--font-display);
+}
+
+.photo {
+  aspect-ratio: 676 / 464;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--photo-bg);
+  position: relative;
+}
+.photo > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.stat-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.stat {
+  background: var(--cream);
+  border-radius: 14px;
+  padding: 10px;
+}
+.stat--lg {
+  padding: 12px;
+}
+.stat__value {
+  font: 600 17px var(--font-display);
+}
+.stat__label {
+  font: 11px var(--font-body);
+  color: var(--muted);
+}
+
+.tile {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+}
+
+.kicker {
+  font: 500 12px var(--font-body);
+  color: var(--muted);
+}
+
+/* Key/value rows used in call summary, booking and welcome answers */
+.kv-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.kv-row:last-child {
+  border-bottom-color: transparent;
+}
+.kv-row .tile {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  font-size: 20px;
+}
+.kv-row__body {
+  flex: 1;
+  min-width: 0;
+}
+.kv-row__k {
+  font: 12px var(--font-body);
+  color: var(--muted);
+}
+.kv-row__v {
+  font: 600 15px/1.35 var(--font-body);
+  margin-top: 2px;
+}
+
+/* ── Buttons ── */
+.pill {
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.pill:disabled {
+  cursor: default;
+}
+.btn-dark {
+  border: none;
+  background: var(--ink);
+  color: var(--cream);
+}
+.btn-outline {
+  border: 1.5px solid var(--ink);
+  background: transparent;
+}
+.btn-lime {
+  border: 1.5px solid var(--ink);
+  background: var(--lime);
+}
+.btn-back {
+  height: 40px;
+  padding: 0 16px 0 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font: 500 14px var(--font-body);
+  cursor: pointer;
+  flex: none;
+  align-self: flex-start;
+}
+.btn-back .ms {
+  font-size: 20px;
+}
+.btn-edit {
+  height: 32px;
+  padding: 0 12px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--lime);
+  font: 600 12px var(--font-body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-edit .ms {
+  font-size: 16px;
+}
+.btn-more-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  font: 600 12px var(--font-body);
+  cursor: pointer;
+}
+.btn-more-info .ms {
+  font-size: 16px;
+}
+
+.press:active {
+  transform: scale(0.98);
+}
+
+/* Row button inside a list card (Help › Servicing) */
+.list-btn {
+  width: 100%;
+  border: none;
+  background: transparent;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 22px;
+}
+.list-btn:hover {
+  background: var(--cream);
+}
+
+/* Round check indicator on selectable cards */
+.check-dot {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--ink);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--lime);
+}
+.check-dot.on {
+  background: var(--ink);
+}
+
+/* ── Issue flow: bike tap points, part chips, answer options ── */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+.hotspot {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hotspot__pulse {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--lime);
+  animation: pulse 1.4s ease-out infinite;
+}
+.hotspot__dot {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  box-sizing: border-box;
+  border: 2px solid var(--ink);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.chip {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  border: 1.5px solid transparent;
+  font: 500 13px var(--font-body);
+  cursor: pointer;
+}
+.option {
+  width: 100%;
+  min-height: 76px;
+  box-sizing: border-box;
+  text-align: left;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+.other-text {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: -2px;
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  padding: 12px 14px;
+  font: 15px/1.45 var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  resize: none;
+  outline: none;
+}
+
+/* Selectable card used for accessories, features and incentives (a div, so a "More info" button can sit inside) */
+.select-card {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  border: 2px solid transparent;
+  background: var(--white);
+  border-radius: 26px;
+  padding: 12px;
+  cursor: pointer;
+}
+.select-card.on {
+  border-color: var(--ink);
+  background: var(--lime);
+}
+
+/* ── Back button + progress bar ── */
+.flow-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+  padding: 6px 20px 0;
+}
+.progress {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+}
+.progress__seg {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--track);
+}
+.progress__seg.on {
+  background: var(--ink);
+}
+
+/* ── Bottom tab bar ── */
+.tab-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 16px 28px;
+  background: linear-gradient(rgba(245, 243, 237, 0), var(--cream) 30%);
+}
+.tab-bar__inner {
+  display: flex;
+  background: var(--ink);
+  border-radius: 30px;
+  padding: 6px;
+  gap: 4px;
+}
+.tab {
+  flex: 1;
+  height: 52px;
+  border: none;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--grey-light);
+  font: 500 13px var(--font-body);
+}
+.tab:hover {
+  color: var(--grey-light);
+}
+.tab.active {
+  background: var(--lime);
+  color: var(--ink);
+  cursor: default;
+}
+.tab .ms {
+  font-size: 22px;
+}
+
+/* ── Bottom call-to-action bar ── */
+.cta-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 16px 34px;
+  background: linear-gradient(rgba(245, 243, 237, 0), var(--cream) 28%);
+}
+.cta {
+  width: 100%;
+  height: 56px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--ink);
+  background: var(--lime);
+  color: var(--ink);
+  font: 600 16px var(--font-body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.cta .ms {
+  font-size: 20px;
+}
+.cta:disabled {
+  background: transparent;
+  border-color: var(--disabled-bd);
+  color: var(--disabled-fg);
+  cursor: default;
+}
+
+/* ── Notes ── */
+.note {
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: var(--sand);
+  font: 13px/1.45 var(--font-body);
+  display: flex;
+  gap: 10px;
+  text-wrap: pretty;
+}
+.note > .ms {
+  flex: none;
+  font-size: 20px;
+}
+.note--dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+.note--dark > .ms {
+  color: var(--lime);
+}
+
+/* ── Success hero (Call booked, Incentive added, You're all set) ── */
+.success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 36px;
+  background: var(--ink);
+  color: var(--lime);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  flex: none;
+}
+
+/* ── Progress meter (incentives) ── */
+.meter {
+  display: block;
+  position: relative;
+  border-radius: 999px;
+  background: var(--bar);
+  overflow: hidden;
+}
+.meter__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background: var(--lime);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.meter-scale {
+  display: flex;
+  justify-content: space-between;
+  font: 11px var(--font-body);
+  color: var(--muted);
+}
+
+/* ── Screens gallery (mirrors All Screens.dc.html: 560×1000 slides) ── */
+.gallery {
+  padding: 32px 24px 64px;
+}
+.gallery__head {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.gallery__title {
+  font: 600 22px var(--font-display);
+}
+.gallery__hint {
+  font: 12px/1.5 system-ui, sans-serif;
+  color: rgba(0, 0, 0, 0.55);
+}
+.gallery__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+.slide {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.slide__label {
+  font: 600 10.5px ui-monospace, Menlo, monospace;
+  color: var(--ink);
+  align-self: flex-start;
+  padding: 3px 7px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  text-decoration: none;
+}
+.slide__label:target,
+.slide:target .slide__label {
+  background: #2a78d6;
+  color: #fff;
+}
+.slide__canvas {
+  width: 560px;
+  height: 1000px;
+  background: var(--canvas);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+@media print {
+  @page {
+    size: 560px 1000px;
+    margin: 0;
+  }
+  body {
+    background: var(--canvas);
+  }
+  .gallery {
+    padding: 0;
+  }
+  .gallery__head,
+  .slide__label {
+    display: none;
+  }
+  .gallery__grid {
+    display: block;
+  }
+  .slide {
+    break-after: page;
+  }
+  .slide__canvas {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
